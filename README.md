@@ -1,5 +1,9 @@
 # Getting Started
 
+## Deploy
+
+https://capstone-11.netlify.app/
+
 ## Cara clone s.d. run
 
 1. Clone dulu https://github.com/CapstoneProjectKelompok11/book-office-react.git
