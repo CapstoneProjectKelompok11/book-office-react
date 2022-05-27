@@ -19,16 +19,23 @@
 Kalau di kelasku biasanya pakai conventional commit buat ngasih pesan commit nya, cek disini https://www.conventionalcommits.org/id/v1.0.0/
 
 Tapi kalau dirasa ribet, gak pake gpp. Ini beberapa yang biasanya dipake di kelasku
+
 `feat` untuk nambah fitur
+
 `feat : init project` -> inisialisasi project
+
 `feat : add button login`
+
 dll
 
 `docs` untuk update dokumentasi, biasanya saya pake buat update readme, atau nambah ss an
+
 `docs : update readme`
+
 `docs : add ss pict`
 
 `refactor` buat edit kodingan, yang gak ngubah apa apa
+
 `fix` buat fix bug
 
 ## Catatan
