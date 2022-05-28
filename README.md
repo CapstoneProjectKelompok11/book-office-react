@@ -14,7 +14,8 @@ Untuk setiap fitur, bisa buat branch baru. biar branch `main` gak perlu diutak a
 
 ### Cara ganti branch
 
-Klik ini dulu, pojok kanan bawah ![klik ini](https://github.com/achmadrizky486/coretan/blob/master/gambar-capstopne/branch.PNG)
+Klik ini dulu, pojok kanan bawah
+![klik ini](https://github.com/achmadrizky486/coretan/blob/master/gambar-capstopne/branch.PNG)
 
 ![ganti branch](https://github.com/achmadrizky486/coretan/blob/4d9e3e1b91e92d474e8be5a0e1b41e7638d8db73/gambar-capstopne/ganti-branch.png)
 
