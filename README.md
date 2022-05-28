@@ -6,6 +6,16 @@ https://capstone-11.netlify.app/
 
 ## JANGAN LUPA GANTI BRANCH
 
+Untuk setiap fitur, bisa buat branch baru. biar branch `main` gak perlu diutak atik.
+
+### Cara buat branch (Di Github)
+
+![Buat Branch](https://github.com/achmadrizky486/coretan/blob/829c5983da12b43c0ad62b7decdda34796bd5caa/gambar-capstopne/buat-branch.PNG)
+
+### Cara ganti branch
+
+![enter image description here](https://github.com/achmadrizky486/coretan/blob/master/gambar-capstopne/branch.PNG)
+
 ## Cara clone s.d. run
 
 1. Clone dulu https://github.com/CapstoneProjectKelompok11/book-office-react.git
