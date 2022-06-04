@@ -7,7 +7,7 @@ import img5 from "../assets/asas.png";
 
 const AboutUs = () => {
   return (
-    <div className="my-16 bg-gradient-to-r from-[#FFFFFF] to-[#D9D9D9] h-[350px]">
+    <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
       <div className="mx-auto grid grid-cols-3 gap-4 ">
         <div className="col-span-2 flex flex-col my-10 ml-20">
           <div>
@@ -17,7 +17,7 @@ const AboutUs = () => {
               jakarta. We will help you for Booking, Renting, and Tour.
             </p>
           </div>
-          <div className="grid grid-cols-5">
+          <div className="grid grid-cols-7">
             <div className="flex items-center text-center">
               <div>
                 <img src={img1} alt="/" />
