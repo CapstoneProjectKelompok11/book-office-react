@@ -1,10 +1,12 @@
 import "./App.css";
-import Logindua from "./components/Logindua";
+import Codeconfirm from "./components/Codeconfirm";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
     <div>
-      <Logindua />
+      <Login />
     </div>
   );
 }
