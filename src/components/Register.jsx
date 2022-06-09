@@ -1,83 +1,129 @@
 import React from "react";
 import { useState } from "react";
-
+import img from "../image/bglogin.png";
 
 const Register = () => {
-
   const [dataForm, setDataForm] = useState({
-    FrontName: '',
-    LastName: '',
-    Address: '',
-    Email: '',
-    Password: '',
-    passwordConfirm: '',
+    FrontName: "",
+    LastName: "",
+    Address: "",
+    Email: "",
+    Password: "",
+    passwordConfirm: "",
   });
 
+  const [FrontName, setFrontName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [Address, setAddress] = useState("");
+  const [Password, setPassword] = useState("");
+  const [PasswordConfirm, setPasswordConfirm] = useState("");
+
   const [isMessage, setMessage] = useState({
-    message: ""
-})
+    message: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (dataForm.FrontName === '' || dataForm.LastName === '' || dataForm.Address === '' || dataForm.Email === '' || dataForm.Password === '' || dataForm.passwordConfirm === '') {
-      setMessage({
+    if (
+      dataForm.FrontName === "" ||
+      dataForm.LastName === "" ||
+      dataForm.Address === "" ||
+      dataForm.Email === "" ||
+      dataForm.Password === "" ||
+      dataForm.passwordConfirm === ""
+    ) {
+      setMessage("Silahkan diisi terlebih dahulu");
+      if (
+        dataForm.FrontName === "" ||
+        dataForm.LastName !== "" ||
+        dataForm.Address !== "" ||
+        dataForm.Email !== "" ||
+        dataForm.Password !== "" ||
+        dataForm.passwordConfirm !== ""
+      ) {
+        setMessage({
           ...isMessage,
-          message: "Silahkan diisi terlebih dahulu",
-      });
-      if (dataForm.FrontName === '' || dataForm.LastName !== '' || dataForm.Address !== '' || dataForm.Email !== '' || dataForm.Password !== '' || dataForm.passwordConfirm !== '') {
-        setMessage({
-            ...isMessage,
-            message: "Masukkan Front Name Anda",
+          message: "Masukkan Front Name Anda",
         });
       }
-      if (dataForm.FrontName !== '' || dataForm.LastName === '' || dataForm.Address !== '' || dataForm.Email !== '' || dataForm.Password !== '' || dataForm.passwordConfirm !== '') {
+      if (
+        dataForm.FrontName !== "" ||
+        dataForm.LastName === "" ||
+        dataForm.Address !== "" ||
+        dataForm.Email !== "" ||
+        dataForm.Password !== "" ||
+        dataForm.passwordConfirm !== ""
+      ) {
         setMessage({
-            ...isMessage,
-            message: "Masukkan Last Name Anda",
+          ...isMessage,
+          message: "Masukkan Last Name Anda",
         });
       }
-      if (dataForm.FrontName !== '' || dataForm.LastName !== '' || dataForm.Address === '' || dataForm.Email !== '' || dataForm.Password !== '' || dataForm.passwordConfirm !== '') {
+      if (
+        dataForm.FrontName !== "" ||
+        dataForm.LastName !== "" ||
+        dataForm.Address === "" ||
+        dataForm.Email !== "" ||
+        dataForm.Password !== "" ||
+        dataForm.passwordConfirm !== ""
+      ) {
         setMessage({
-            ...isMessage,
-            message: "Masukkan Address Anda",
+          ...isMessage,
+          message: "Masukkan Address Anda",
         });
       }
-      if (dataForm.FrontName !== '' || dataForm.LastName !== '' || dataForm.Address !== '' || dataForm.Email === '' || dataForm.Password !== '' || dataForm.passwordConfirm !== '') {
+      if (
+        dataForm.FrontName !== "" ||
+        dataForm.LastName !== "" ||
+        dataForm.Address !== "" ||
+        dataForm.Email === "" ||
+        dataForm.Password !== "" ||
+        dataForm.passwordConfirm !== ""
+      ) {
         setMessage({
-            ...isMessage,
-            message: "Masukkan Email Anda",
+          ...isMessage,
+          message: "Masukkan Email Anda",
         });
       }
-      if (dataForm.FrontName !== '' || dataForm.LastName !== '' || dataForm.Address !== '' || dataForm.Email !== '' || dataForm.Password === '' || dataForm.passwordConfirm !== '') {
+      if (
+        dataForm.FrontName !== "" ||
+        dataForm.LastName !== "" ||
+        dataForm.Address !== "" ||
+        dataForm.Email !== "" ||
+        dataForm.Password === "" ||
+        dataForm.passwordConfirm !== ""
+      ) {
         setMessage({
-            ...isMessage,
-            message: "Masukkan Password Anda",
+          ...isMessage,
+          message: "Masukkan Password Anda",
         });
       }
-      if (dataForm.FrontName !== '' || dataForm.LastName !== '' || dataForm.Address !== '' || dataForm.Email !== '' || dataForm.Password !== '' || dataForm.passwordConfirm === '') {
+      if (
+        dataForm.FrontName !== "" ||
+        dataForm.LastName !== "" ||
+        dataForm.Address !== "" ||
+        dataForm.Email !== "" ||
+        dataForm.Password !== "" ||
+        dataForm.passwordConfirm === ""
+      ) {
         setMessage({
-            ...isMessage,
-            message: "Masukkan Confirm Password Anda",
+          ...isMessage,
+          message: "Masukkan Confirm Password Anda",
         });
       }
     } else if (dataForm.Password !== dataForm.passwordConfirm) {
       setMessage({
-          ...isMessage,
-          message: "Password tidak sama",
+        ...isMessage,
+        message: "Password tidak sama",
       });
-    }
-    else {
+    } else {
       setMessage({
-          ...isMessage,
-          message: "Register berhasil",
+        ...isMessage,
+        message: "Register berhasil",
       });
     }
-
+    console.log("dataForm", dataForm);
   };
-
-
-
-
 
   return (
     <section className="w-full bg-white">
@@ -86,7 +132,7 @@ const Register = () => {
           <div className="flex flex-col lg:flex-row">
             <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 h-full">
               <div className="relative flex flex-col items-center justify-center w-full h-full">
-                <img className="" src="/image/bglogin.png" alt="" />
+                <img className="" src={img} alt="" />
               </div>
             </div>
             <div className="w-full bg-white lg:w-6/12 xl:w-6/12">
@@ -178,6 +224,9 @@ const Register = () => {
                     >
                       Register Account
                     </a>
+                    {/* <span>
+                      {isMessage}
+                    </span> */}
                   </div>
                 </div>
               </div>
