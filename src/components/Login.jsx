@@ -1,6 +1,58 @@
 import React from "react";
+import { useState } from "react";
+import img from "../image/bglogin.png";
 
 const Login = () => {
+  const [dataForm, setDataForm] = useState({
+    Email: "",
+    Password: "",
+  });
+
+  cosnt [Password, setPassword] = useState("");
+
+  const [isMessage, setMessage] = useState({
+    message: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(
+      dataForm.Email === "" ||
+      dataForm.Password === "" 
+    ) {
+      setMessage("")
+      if (
+        dataForm.Email === "" ||
+        dataForm.Password !== "" 
+      ) {
+        setMessage ({
+          isMessage,
+          message: "Masukkan Email Anda",
+        });
+      }
+      if (
+        dataForm.Email !== "" ||
+        dataForm.Password === "" 
+      ) {
+        setMessage({
+          ...isMessage,
+          message: "Masukkan Password Anda",
+        });
+      }
+    } else if (dataForm.Password !== dataForm.passwordConfirm) {
+      setMessage({
+        ...isMessage,
+        message: "Password tidak sama",
+      });
+    } else {
+      setMessage({
+        ...isMessage,
+        message: "Register berhasil",
+      });
+    }
+    console.log("dataForm", dataForm);
+  };
+
   return (
     <section className="w-full bg-white">
       <div className="mx-auto">
