@@ -8,13 +8,17 @@ const Login = () => {
     Password: "",
   });
 
-  cosnt [Password, setPassword] = useState("");
+  const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
 
   const [isMessage, setMessage] = useState({
     message: "",
   });
 
   const handleSubmit = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
     e.preventDefault();
     if(
       dataForm.Email === "" ||
@@ -39,27 +43,41 @@ const Login = () => {
           message: "Masukkan Password Anda",
         });
       }
-    } else if (dataForm.Password !== dataForm.passwordConfirm) {
-      setMessage({
-        ...isMessage,
-        message: "Password tidak sama",
-      });
+    } else if (dataForm.Email !== "email") {
+        if (regexEmail.test(value)) {
+          setErrorEmail("")
+        } else {
+          setErrorEmail ("Email tidak sesuai")
+        }
+    } else if (dataForm.Password !== "password") {
+          if (value.length >= 9 && value.length <= 14) {
+            setErrorPassword("")
+        } else if (value.length < 9) {
+            setErrorPassword("No Passwor harus lebih besar")
+        } else if (value.length > 14) {
+            setErrorPassword("No Password harus lebih kecil")
+        }
     } else {
       setMessage({
         ...isMessage,
-        message: "Register berhasil",
+        message: "Login berhasil",
       });
     }
+    setData({
+      ...data,
+      [name]: value
+  })
     console.log("dataForm", dataForm);
   };
 
   return (
     <section className="w-full bg-white">
       <div className="mx-auto">
+        <form onSubmit={""}>
         <div className="flex flex-col lg:flex-row">
           <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
             <div className="relative flex flex-col items-center justify-center w-full">
-              <img className="" src="/image/bglogin.png" alt="" />
+              <img className="" src={img} alt="" />
             </div>
           </div>
           <div className="w-full bg-white lg:w-6/12 xl:w-6/12">
@@ -171,6 +189,7 @@ const Login = () => {
             </div>
           </div>
         </div>
+        </form>
       </div>
     </section>
   );
