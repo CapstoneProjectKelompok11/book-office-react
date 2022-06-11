@@ -6,6 +6,7 @@ const Register = () => {
   const [dataForm, setDataForm] = useState({
     FrontName: "",
     LastName: "",
+    PhoneNumber: "",
     Address: "",
     Email: "",
     Password: "",
@@ -14,115 +15,127 @@ const Register = () => {
 
   const [FrontName, setFrontName] = useState("");
   const [LastName, setLastName] = useState("");
+  const [PhoneNumber, setPhoneNumber] = useState("");
   const [Address, setAddress] = useState("");
+  const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [PasswordConfirm, setPasswordConfirm] = useState("");
+  const [UserExist, setUserExist] = useState("");
+  const [AllValid, setAllValid] = useState("");
+  const [loading, setLoading] = useState(false);
+
 
   const [isMessage, setMessage] = useState({
     message: "",
   });
 
+  const handleFirstName = (e) => {
+    const value = e.target.value;
+    const minLength = 3;
+    if (value.length < minLength) {
+      setFrontName("First Name must be at least 3 characters");
+    } else {
+      setFrontName("");
+    }
+  }
+  const handleLastName = (e) => {
+    const value = e.target.value;
+    const minLength = 3;
+    if (value.length < minLength) {
+      setLastName("Last Name must be at least 3 characters");
+    } else {
+      setLastName("");
+    }
+  }
+
+  const handlePhoneNumber = (e) => {
+    const value = e.target.value;
+    const minLength = 10;
+    if (value.length < minLength) {
+      setPhoneNumber("Phone Number must be at least 10 characters");
+    }
+    else {
+      setPhoneNumber("");
+    }
+  }
+
+  const handleAddress = (e) => {
+    const value = e.target.value;
+    const minLength = 3;
+    if (value.length < minLength) {
+      setAddress("Address must be at least 3 characters");
+    }
+    else {
+      setAddress("");
+    }
+  }
+
+  const handlePassword = (e) => {
+    const value = e.target.value;
+    const minLength = 8;
+    const maxLength = 16;
+    const containsNumber = value.match(/[0-9]/) ? true : false;
+    const containsLetter = value.match(/[a-zA-Z]/) ? true : false;
+    setPassword(value);
+    value.length >= minLength && value.length <= maxLength && containsNumber && containsLetter
+      ? setPasswordConfirm("")
+      : setPasswordConfirm("Password must be at least 8 characters and contain at least one number and one letter");
+  };
+
+
+  const handlePasswordConfirm = (e) => {
+    const value = e.target.value;
+    setPasswordConfirm(value);
+    value === Password ? setPasswordConfirm("") : setPasswordConfirm("Password must be the same");
+
+  }
+
+
+  const handleEmail = (e) => {
+    const value = e.target.value;
+    const valueNoSpace = value.includes(" ") ? false : true;
+    const oneAt = value.match(/@/g)?.length === 1 ? true : false;
+
+    setEmail(valueNoSpace);
+    valueNoSpace &&  oneAt
+      ? setMessage({ message: "" })
+      : setMessage({ message: "Email must contain one @" });
+
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      dataForm.FrontName === "" ||
-      dataForm.LastName === "" ||
-      dataForm.Address === "" ||
-      dataForm.Email === "" ||
-      dataForm.Password === "" ||
-      dataForm.passwordConfirm === ""
-    ) {
-      setMessage("Silahkan diisi terlebih dahulu");
-      if (
-        dataForm.FrontName === "" ||
-        dataForm.LastName !== "" ||
-        dataForm.Address !== "" ||
-        dataForm.Email !== "" ||
-        dataForm.Password !== "" ||
-        dataForm.passwordConfirm !== ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Front Name Anda",
-        });
-      }
-      if (
-        dataForm.FrontName !== "" ||
-        dataForm.LastName === "" ||
-        dataForm.Address !== "" ||
-        dataForm.Email !== "" ||
-        dataForm.Password !== "" ||
-        dataForm.passwordConfirm !== ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Last Name Anda",
-        });
-      }
-      if (
-        dataForm.FrontName !== "" ||
-        dataForm.LastName !== "" ||
-        dataForm.Address === "" ||
-        dataForm.Email !== "" ||
-        dataForm.Password !== "" ||
-        dataForm.passwordConfirm !== ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Address Anda",
-        });
-      }
-      if (
-        dataForm.FrontName !== "" ||
-        dataForm.LastName !== "" ||
-        dataForm.Address !== "" ||
-        dataForm.Email === "" ||
-        dataForm.Password !== "" ||
-        dataForm.passwordConfirm !== ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Email Anda",
-        });
-      }
-      if (
-        dataForm.FrontName !== "" ||
-        dataForm.LastName !== "" ||
-        dataForm.Address !== "" ||
-        dataForm.Email !== "" ||
-        dataForm.Password === "" ||
-        dataForm.passwordConfirm !== ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Password Anda",
-        });
-      }
-      if (
-        dataForm.FrontName !== "" ||
-        dataForm.LastName !== "" ||
-        dataForm.Address !== "" ||
-        dataForm.Email !== "" ||
-        dataForm.Password !== "" ||
-        dataForm.passwordConfirm === ""
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Confirm Password Anda",
-        });
-      }
-    } else if (dataForm.Password !== dataForm.passwordConfirm) {
-      setMessage({
-        ...isMessage,
-        message: "Password tidak sama",
+
+    if (FrontName  && LastName  && PhoneNumber  && Address && Email && Password && PasswordConfirm ) {
+    setLoading(true);
+
+      axios
+        .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/register", {
+          FrontName,
+          LastName,
+          PhoneNumber,
+          Address,
+          Email,
+          Password,
+          PasswordConfirm,
+        })
+        .then((response) => {
+          console.log(response);
+          setUserExist("false");
+          setAllValid("valid");
+          setLoading(false);
+          Cookies.set("token", response.data.token);
+       })
+        .catch((error) => {
+          console.log(error);
+         setUserExist("doesn't exist");
+         setAllValid("valid");
+         setLoading(false);
       });
     } else {
-      setMessage({
-        ...isMessage,
-        message: "Register berhasil",
-      });
+      setAllValid("invalid");
+      setUserExist("");
     }
-    console.log("dataForm", dataForm);
   };
 
   return (
@@ -149,6 +162,7 @@ const Register = () => {
                       <input
                         type="text"
                         className="border-2 border-black w-full md:w-56 h-10 pt-2.5 block px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                        onChange={(e) => {handleFirstName(e)}}
                       />
                     </div>
                     <div className="pt-2 md:pl-3">
@@ -158,6 +172,7 @@ const Register = () => {
                       <input
                         type="text"
                         className="border-2 border-black w-full md:w-56 h-10 pt-2.5 block px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                        onChange={(e) => {handleLastName(e)}}
                       />
                     </div>
                   </div>
@@ -168,6 +183,17 @@ const Register = () => {
                     <input
                       type="text"
                       className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      onChange={(e) => {handlePhoneNumber(e)}}
+                    />
+                  </div>
+                  <div className="relative pt-5">
+                    <label className="font-semibold text-xl text-gray-900">
+                      Address
+                    </label>
+                    <input
+                      type="textarea"
+                      className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      onChange={(e) => {handleAddress(e)}}
                     />
                   </div>
                   <div className="relative pt-5">
@@ -177,6 +203,7 @@ const Register = () => {
                     <input
                       type="text"
                       className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      onChange={(e) => {handleEmail(e)}}
                     />
                   </div>
                   <div className="relative pt-5">
@@ -186,6 +213,7 @@ const Register = () => {
                     <input
                       type="password"
                       className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      onChange={(e) => {handlePassword(e)}}
                     />
                     <div class="absolute mt-14 mr-2 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                       <svg
@@ -205,6 +233,7 @@ const Register = () => {
                     <input
                       type="password"
                       className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      onChange={(e) => {handlePasswordConfirm(e)}}
                     />
                     <div class="absolute mt-14 mr-2 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                       <svg
