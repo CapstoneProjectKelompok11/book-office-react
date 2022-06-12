@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 import img from "../image/bglogin.png";
+
 
 const Register = () => {
   const [dataForm, setDataForm] = useState({

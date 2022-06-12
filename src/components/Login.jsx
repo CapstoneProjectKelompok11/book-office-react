@@ -1,6 +1,9 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
+
 import img from "../image/bglogin.png";
+
 
 const Login = () => {
   const [dataForm, setDataForm] = useState({
@@ -8,72 +11,74 @@ const Login = () => {
     Password: "",
   });
 
-  const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-  const [errorEmail, setErrorEmail] = useState("");
-  const [errorPassword, setErrorPassword] = useState("");
+const [Email, setEmail] = useState("");
+const [Password, setPassword] = useState("");
+const [UserExist, setUserExist] = useState("");
+const [AllValid, setAllValid] = useState("");
+const [loading, setLoading] = useState(false);
+const [isMessage, setMessage] = useState({
+  message: "",
+});
+ 
+const handleEmail = (e) => {
+  const value = e.target.value;
+    const valueNoSpace = value.includes(" ") ? false : true;
+    const oneAt = value.match(/@/g)?.length === 1 ? true : false;
 
-  const [isMessage, setMessage] = useState({
-    message: "",
-  });
+    setEmail(valueNoSpace);
+    valueNoSpace &&  oneAt
+      ? setMessage({ message: "" })
+      : setMessage({ message: "Email must contain one @" });
+  };
+
+  const handlePassword = (e) => {
+    const value = e.target.value;
+    const minLength = 8;
+    const maxLength = 16;
+    const containsNumber = value.match(/[0-9]/) ? true : false;
+    const containsLetter = value.match(/[a-zA-Z]/) ? true : false;
+    setPassword(value);
+    value.length >= minLength && value.length <= maxLength
+      ? setMessage({ message: "" })
+      : setMessage({ message: "Password must be between 8 and 16 characters" });
+    containsNumber && containsLetter
+      ? setMessage({ message: "" })
+      : setMessage({ message: "Password must contain at least one number and one letter" });
+  };
 
   const handleSubmit = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
     e.preventDefault();
-    if(
-      dataForm.Email === "" ||
-      dataForm.Password === "" 
-    ) {
-      setMessage("")
-      if (
-        dataForm.Email === "" ||
-        dataForm.Password !== "" 
-      ) {
-        setMessage ({
-          isMessage,
-          message: "Masukkan Email Anda",
-        });
-      }
-      if (
-        dataForm.Email !== "" ||
-        dataForm.Password === "" 
-      ) {
-        setMessage({
-          ...isMessage,
-          message: "Masukkan Password Anda",
-        });
-      }
-    } else if (dataForm.Email !== "email") {
-        if (regexEmail.test(value)) {
-          setErrorEmail("")
-        } else {
-          setErrorEmail ("Email tidak sesuai")
-        }
-    } else if (dataForm.Password !== "password") {
-          if (value.length >= 9 && value.length <= 14) {
-            setErrorPassword("")
-        } else if (value.length < 9) {
-            setErrorPassword("No Passwor harus lebih besar")
-        } else if (value.length > 14) {
-            setErrorPassword("No Password harus lebih kecil")
-        }
-    } else {
-      setMessage({
-        ...isMessage,
-        message: "Login berhasil",
-      });
+    if (loading){
+      return;
     }
-    setData({
-      ...data,
-      [name]: value
-  })
-    console.log("dataForm", dataForm);
-  };
+
+    if (Email && Password) {
+      setLoading(true);
+
+    axios
+      .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", { Email, Password })
+      .then((response) => {
+        setUserExist("false");
+        setAllValid("valid");
+        setLoading(false);
+        Cookies.set("token", response.data.token);
+      })
+      .catch((error) => {
+        console.log(error);
+       setUserExist("doesn't exist");
+       setAllValid("valid");
+       setLoading(false);
+    });
+  } else {
+    setAllValid("invalid");
+    setUserExist("");
+  }
+};
 
   return (
     <section className="w-full bg-white">
       <div className="mx-auto">
-        <form onSubmit={""}>
+        <form onChange={(e) => {handleSumbit(e)}}>
         <div className="flex flex-col lg:flex-row">
           <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
             <div className="relative flex flex-col items-center justify-center w-full">
@@ -101,6 +106,7 @@ const Login = () => {
                     type="email"
                     className="border-2 m-auto border-black w-96 h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                     placeholder="Enter Your Email"
+                    onChange={(e) => {handleEmail(e)}}
                   />
                 </div>
                 <div className="relative pt-5 text-center md:text-left">
@@ -111,6 +117,7 @@ const Login = () => {
                     type="password"
                     className="w-96 border-2 m-auto border-black h-10 pt-2.5 block px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                     placeholder="Password"
+                    onChange={(e) => {handlePassword(e)}}
                   />
                   <div className="absolute mt-14 mr-3 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg
