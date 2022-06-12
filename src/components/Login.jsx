@@ -78,7 +78,7 @@ const handleEmail = (e) => {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto">
-        <form onChange={(e) => {handleSumbit(e)}}>
+        <form onSubmit={handleSubmit}>
         <div className="flex flex-col lg:flex-row">
           <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
             <div className="relative flex flex-col items-center justify-center w-full">
