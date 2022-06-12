@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { dummyData } from "./dummyData";
+// import { dummyData } from "./dummyData";
 // import TopPlacesItem from "./TopPlacesItem";
 // import img from "../assets/Image.png";
 
@@ -15,7 +15,6 @@ const TopPlaces = () => {
       )
       .then((res) => {
         setData(res.data.data);
-        console.log("res.data", res.data);
       })
       .catch((err) => {
         setError(err);
@@ -28,10 +27,21 @@ const TopPlaces = () => {
       <div className="justify-between pt-12">
         <div className="grid grid-cols-3 gap-1 place-items-center ">
           {data.map((builds) => {
+            console.log(builds);
             return (
               <>
-                <p> {builds.name}</p>
-                <img src={builds.images} alt="img" />
+                {/* <p> {builds.name}</p> */}
+                {builds.images.slice(0, 1).map((tes) => {
+                  console.log(tes.fileName);
+                  return (
+                    <>
+                      <img
+                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                        alt="img"
+                      />
+                    </>
+                  );
+                })}
               </>
             );
           })}
