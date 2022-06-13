@@ -28,12 +28,12 @@ const TopPlaces = () => {
         <div className="grid grid-cols-6 gap-4 items-center ">
           <div className="flex col-span-1"></div>
           {data.map((builds) => {
-            console.log(builds);
+            // console.log(builds);
             return (
               <>
                 {/* <p> {builds.name}</p> */}
                 {builds.images.slice(0, 1).map((tes) => {
-                  console.log(tes.fileName);
+                  // console.log(tes.fileName);
                   return (
                     <>
                       <img
