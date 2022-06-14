@@ -23,19 +23,29 @@ const Scbdhotel = () => {
       <p className="ml-20 mt-40 text-2xl font-semibold">Kuningan</p>
       <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
         {data.map((builds) => {
-          // console.log(builds);
           return (
             <>
+              {builds.complex.complexName === "Kuningan"
+                ? builds.images.map((tes) => (
+                    <>
+                      <img
+                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                        alt="img"
+                        className="h-full object-cover"
+                      />
+                    </>
+                  ))
+                : null}
+
               {/* Karena "complex" itu object jadi cara mapnya seperti yg dibawah */}
-              {Object.keys(builds.complex).map((tes) => {
-                // {complexName}
-                console.log(tes.id);
+              {/* {Object.keys(builds.complex).map((tes) => {
+                console.log(builds.complex[tes].id);
                 return (
                   <>
-                    <p>{tes.complexName}</p>
+                    <p>{builds.complex[tes].id}</p>
                   </>
                 );
-              })}
+              })} */}
             </>
           );
         })}
