@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './Pages/Home'
-import Detail from './Pages/Detail'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
-import Lisitng from './pages/Listing'
+import Home from './pages/Landing Page/Home';
+import Detail from './pages/Detail Room/Detail';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Listing from './pages/Listing/Listing';
 
 
 
@@ -15,7 +14,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/Login/" element={<Login />} />
-      <Route path="/Detail/:id" element={<Detail />} />
+      <Route path="/Register/" element={<Register />} />
+      <Route path="/Listing/" element={<Listing />} />
+      <Route path="/Detail/;id" element={<Detail />} />
     </Routes>
   </BrowserRouter>
   </div>
