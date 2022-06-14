@@ -40,16 +40,6 @@ const Scbdhotel = () => {
                     )
                   )
                 : null}
-
-              {/* Karena "complex" itu object jadi cara mapnya seperti yg dibawah */}
-              {/* {Object.keys(builds.complex).map((tes) => {
-                console.log(builds.complex[tes].id);
-                return (
-                  <>
-                    <p>{builds.complex[tes].id}</p>
-                  </>
-                );
-              })} */}
             </>
           );
         })}
@@ -58,16 +48,33 @@ const Scbdhotel = () => {
         <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
           More Office in Kuningan
         </p>
-        <p className="ml-20 mt-24 text-2xl font-semibold">Senayan City</p>
+        <p className="ml-20 mt-24 text-2xl font-semibold">Jakarta Pusat</p>
         <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
-          <img className="w-[314px] h-[240px] object-cover" src={img} alt="/" />
-          <img className="w-[314px] h-[240px] object-cover" src={img} alt="/" />
-          <img className="w-[314px] h-[240px] object-cover" src={img} alt="/" />
-          <img className="w-[314px] h-[240px] object-cover" src={img} alt="/" />
+          {data.map((builds) => {
+            return (
+              <>
+                {builds.complex.city.cityName === "Jakarta Pusat"
+                  ? builds.images.map(
+                      (
+                        tes //slice buat limitasi data yg diambil (0 sampai 1 data)
+                      ) => (
+                        <>
+                          <img
+                            src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                            alt="img"
+                            className="h-full object-cover"
+                          />
+                        </>
+                      )
+                    )
+                  : null}
+              </>
+            );
+          })}
         </div>
         <div>
           <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
-            More Office in Senayan City
+            More Office in Jakarta Pusat
           </p>
         </div>
       </div>
