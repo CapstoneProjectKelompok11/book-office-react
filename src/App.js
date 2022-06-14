@@ -1,23 +1,18 @@
 import React from "react";
-import AboutUs from "./components/AboutUs";
-import Banner from "./components/Banner";
-import Findus from "./components/Findus";
-import Footer from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import DetailPage from "./components/DetailPage";
+import LandingPage from "./components/LandingPage";
 import Navbar from "./components/Navbar";
-import Scbdhotel from "./components/Scbdhotel";
-import TopPlaces from "./components/TopPlaces";
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar />
-      <Banner />
-      <TopPlaces />
-      <AboutUs />
-      <Scbdhotel />
-      <Findus />
-      <Footer />
-    </div>
+      <Routes>
+        <Route index element={<LandingPage />}></Route>
+        <Route path="/detail" element={<DetailPage />}></Route>
+      </Routes>
+    </>
   );
 }
 
