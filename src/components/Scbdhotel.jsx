@@ -26,15 +26,19 @@ const Scbdhotel = () => {
           return (
             <>
               {builds.complex.complexName === "Kuningan"
-                ? builds.images.map((tes) => (
-                    <>
-                      <img
-                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                        alt="img"
-                        className="h-full object-cover"
-                      />
-                    </>
-                  ))
+                ? builds.images.slice(0, 1).map(
+                    (
+                      tes //slice buat limitasi data yg diambil (0 sampai 1 data)
+                    ) => (
+                      <>
+                        <img
+                          src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                          alt="img"
+                          className="h-full object-cover"
+                        />
+                      </>
+                    )
+                  )
                 : null}
 
               {/* Karena "complex" itu object jadi cara mapnya seperti yg dibawah */}
