@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-
-import img from "../image/bglogin.png";
+import img2 from "../image/Image.png";
+import img from "../image/logologin.png";
 
 
 const Login = () => {
@@ -82,12 +82,12 @@ const handleEmail = (e) => {
         <div className="flex flex-col lg:flex-row">
           <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
             <div className="relative flex flex-col items-center justify-center w-full">
-              <img className="" src={img} alt="" />
+              <img className="" src={img2} alt="" />
             </div>
           </div>
           <div className="w-full bg-white lg:w-6/12 xl:w-6/12">
             <div className="m-48 w-96 m-auto pt-16">
-              <img src="/image/logologin.png" alt="" />
+              <img src={img} alt="" />
             </div>
             <div className="text-center pt-10 text-2xl italic font-semibold">
               <p>Welcome to SewaKantor.com</p>
