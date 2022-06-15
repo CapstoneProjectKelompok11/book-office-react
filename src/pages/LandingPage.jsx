@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import banner from "../assets/Banner.png";
-import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
+import { BiSearchAlt } from "react-icons/bi";
+import banner from "../assets/Banner.png";
 import img1 from "../assets/img-1.png";
 import img2 from "../assets/img-2.png";
 import img3 from "../assets/img-3.png";
@@ -72,19 +72,24 @@ const LandingPage = () => {
               // console.log(builds);
               return (
                 <>
-                  {/* <p> {builds.name}</p> */}
-                  {builds.images.slice(0, 1).map((tes) => {
-                    // console.log(tes.fileName);
-                    return (
-                      <>
-                        <img
-                          src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                          alt="img"
-                          className="h-full object-cover"
-                        />
-                      </>
-                    );
-                  })}
+                  {" "}
+                  <div key={builds.id}>
+                    {/* <p> {builds.name}</p> */}
+                    {builds.images.slice(0, 1).map((tes) => {
+                      // console.log(tes.fileName);
+                      return (
+                        <>
+                          <div key={builds.id}>
+                            <img
+                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                              alt="img"
+                              className="h-full object-cover"
+                            />
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
                 </>
               );
             })}
@@ -153,11 +158,14 @@ const LandingPage = () => {
                         tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                       ) => (
                         <>
-                          <img
-                            src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                            alt="img"
-                            className="h-full object-cover"
-                          />
+                          <NavLink to={`/detail/${builds.id}`}>
+                            <img
+                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                              alt="img"
+                              className="h-full object-cover"
+                              key={tes.id}
+                            />
+                          </NavLink>
                         </>
                       )
                     )
@@ -185,6 +193,7 @@ const LandingPage = () => {
                               src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                               alt="img"
                               className="h-full object-cover"
+                              key={tes.id}
                             />
                           </>
                         )
