@@ -171,19 +171,19 @@ const DetailPage = () => {
           </div>
         </div>
         {/* End of About this Building */}
-        {/* -----------------Type Office------------------ */}
+        {/* -----------------Card Type Office------------------ */}
         <div>
           <div className="text-2xl font-medium pt-12">Type Office</div>
           <div className=" w-full max-w-full py-5 ">
-            <div className="flex grid-cols-3 border-4">
+            <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
               <div>
                 <img
-                  className="w-60 h-full object-fill"
+                  className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
                   src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                   alt="/"
                 />
               </div>
-              <div className=" p-4 flex flex-col justify-between leading-normal">
+              <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
                 <div className="">
                   <div className="text-black font-medium text-xl mb-2">
                     Floor 48th, Equity Tower, Serviced office
@@ -199,10 +199,42 @@ const DetailPage = () => {
                   </p>
                 </div>
               </div>
+              <div className="mx-auto my-auto">
+                <button className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg">
+                  Book
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className=" w-full max-w-full py-5 ">
+            <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
               <div>
-                <div className="item-right">
-                  <button className="w-full my-4">Rates & Availabillity</button>
+                <img
+                  className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
+                  src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
+                  alt="/"
+                />
+              </div>
+              <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
+                <div className="">
+                  <div className="text-black font-medium text-xl mb-2">
+                    Floor 48th, Equity Tower, Serviced office
+                  </div>
+                  <p className="text-gray-700 text-base">
+                    Participant : 1-8 people
+                  </p>
+                  <p className="text-gray-700 text-base">
+                    Floor Size : 442.20 sqm
+                  </p>
+                  <p className="text-gray-700 text-base">
+                    Price start at Rp 19.000.000
+                  </p>
                 </div>
+              </div>
+              <div className="mx-auto my-auto">
+                <button className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg">
+                  Book
+                </button>
               </div>
             </div>
           </div>
