@@ -192,12 +192,14 @@ const LandingPage = () => {
                           tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                         ) => (
                           <>
-                            <img
-                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                              alt="img"
-                              className="h-full object-cover"
-                              key={tes.id}
-                            />
+                            <NavLink to={`/detail/${builds.id}`}>
+                              <img
+                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                alt="img"
+                                className="h-full object-cover"
+                                key={tes.id}
+                              />
+                            </NavLink>
                           </>
                         )
                       )
