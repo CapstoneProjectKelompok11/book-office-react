@@ -5,7 +5,12 @@ import { data } from "autoprefixer";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity } from "react-icons/fa";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
-import { AiOutlineWifi, AiFillBank } from "react-icons/ai";
+import {
+  AiOutlineWifi,
+  AiFillBank,
+  AiFillStar,
+  AiOutlineStar,
+} from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 
 const Card = () => {
@@ -89,6 +94,7 @@ const DetailPage = () => {
       <div className="max-w-[1240px] mx-auto">
         <div className="p-5 text-center text-base font-normal">
           Home {">"} SCBD {">"} Equity Tower
+          <h1>Hai ini id {id}</h1>
         </div>
         {/* -----------------Image Atas----------------------- */}
         <div className="grid grid-cols-3 py-4 gap-8">
@@ -237,6 +243,29 @@ const DetailPage = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+        {/* End of Card Type Office */}
+        {/* ------------------Review------------------ */}
+        <div>
+          <div className="text-2xl font-medium pt-12 pb-4">Review</div>
+          <div className="flex grid-cols-3">
+            <div className="flex">
+              <AiFillStar className="mx-1" style={{ color: "#FBCD0A" }} />
+              <AiFillStar className="mx-1" style={{ color: "#FBCD0A" }} />
+              <AiFillStar className="mx-1" style={{ color: "#FBCD0A" }} />
+              <AiFillStar className="mx-1" style={{ color: "#FBCD0A" }} />
+              <AiFillStar className="mx-1" style={{ color: "#FBCD0A" }} />
+            </div>
+            <div className="w-full h-full bg-gray-200">
+              <div
+                className="bg-yellow-500 text-lg font-medium"
+                style={{ width: "45%" }}
+              >
+                45%
+              </div>
+            </div>
+            <div className="flex mx-5 w-full ">45% 45</div>
           </div>
         </div>
       </div>
