@@ -55,20 +55,7 @@ const handleEmail = (e) => {
     if (Email && Password) {
       setLoading(true);
 
-    axios
-      .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", { Email, Password })
-      .then((response) => {
-        setUserExist("false");
-        setAllValid("valid");
-        setLoading(false);
-        Cookies.set("token", response.data.token);
-      })
-      .catch((error) => {
-        console.log(error);
-       setUserExist("doesn't exist");
-       setAllValid("valid");
-       setLoading(false);
-    });
+   
   } else {
     setAllValid("invalid");
     setUserExist("");

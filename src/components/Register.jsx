@@ -85,8 +85,6 @@ const Register = () => {
         );
   };
 
-  
-
   const handlePasswordConfirm = (e) => {
     const value = e.target.value;
     setPasswordConfirm(value);
@@ -95,6 +93,8 @@ const Register = () => {
       : setPasswordConfirm("Password must be the same");
   };
 
+
+  
   const handleEmail = (e) => {
     const value = e.target.value;
     const valueNoSpace = value.includes(" ") ? false : true;
@@ -119,30 +119,30 @@ const Register = () => {
       PasswordConfirm
     ) {
       setLoading(true);
-
-      // axios
-      //   .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/register", {
-      //     FrontName,
-      //     LastName,
-      //     PhoneNumber,
-      //     Address,
-      //     Email,
-      //     Password,
-      //     PasswordConfirm,
-      //   })
-      //   .then((response) => {
-      //     console.log(response);
-      //     setUserExist("false");
-      //     setAllValid("valid");
-      //     setLoading(false);
-      //     Cookies.set("token", response.data.token);
-      //  })
-      //   .catch((error) => {
-      //     console.log(error);
-      //    setUserExist("doesn't exist");
-      //    setAllValid("valid");
-      //    setLoading(false);
-      // });
+      axios
+        .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/register", {
+          FrontName: dataForm.FrontName,
+          LastName: dataForm.LastName,
+          PhoneNumber: dataForm.PhoneNumber,
+          Address: dataForm.Address,
+          Email: dataForm.Email,
+          Password: dataForm.Password,
+        })
+        .then((response) => {
+          setUserExist("does't exist");
+          setAllValid("valid");
+          setLoading(false);
+          console.log(response.data.data);
+        })
+        .catch((error) => {
+          setUserExist("exists");
+          setAllValid("valid");
+          setLoading(false);
+        });
+      setMessage({
+        ...isMessage,
+        message: "Berhasil",
+      });
     } else {
       setAllValid("invalid");
       setUserExist("");
