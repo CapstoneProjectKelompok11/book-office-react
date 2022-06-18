@@ -17,7 +17,7 @@ const LandingPage = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?page=0&limit=10"
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10"
       )
       .then((res) => {
         setData(res.data.data);
@@ -69,7 +69,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-6 gap-4 items-center ">
             <div className="flex col-span-1"></div>
             {data.map((builds) => {
-              // console.log("builds", builds);
+              console.log("builds", builds);
               return (
                 <>
                   <div key={builds.id}>
@@ -79,11 +79,14 @@ const LandingPage = () => {
                       return (
                         <>
                           <div key={builds.id}>
-                            <img
-                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                              alt="img"
-                              className="h-full object-cover"
-                            />
+                            <NavLink to={`/detail/${builds.id}`}>
+                              <img
+                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                alt="img"
+                                className="h-full object-cover"
+                                key={tes.id}
+                              />
+                            </NavLink>
                           </div>
                         </>
                       );
