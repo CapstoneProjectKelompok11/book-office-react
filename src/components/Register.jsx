@@ -93,8 +93,6 @@ const Register = () => {
       : setPasswordConfirm("Password must be the same");
   };
 
-
-  
   const handleEmail = (e) => {
     const value = e.target.value;
     const valueNoSpace = value.includes(" ") ? false : true;
@@ -173,6 +171,7 @@ const Register = () => {
                       <input
                         type="text"
                         className="border-2 border-black w-full md:w-56 h-10 pt-2.5 block px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                        value={dataForm.firstName}
                         onChange={(e) => {
                           handleFirstName(e);
                         }}
@@ -278,9 +277,8 @@ const Register = () => {
                     >
                       Register Account
                     </a>
-                    {/* <span>
-                      {isMessage}
-                    </span> */}
+
+            
                   </div>
                 </div>
               </div>

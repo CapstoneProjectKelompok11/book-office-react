@@ -4,7 +4,6 @@ import { useState } from "react";
 import img2 from "../image/Image.png";
 import img from "../image/logologin.png";
 
-
 const Login = () => {
   const [dataForm, setDataForm] = useState({
     Email: "",
@@ -13,8 +12,10 @@ const Login = () => {
 
 const [Email, setEmail] = useState("");
 const [Password, setPassword] = useState("");
-const [UserExist, setUserExist] = useState("");
-const [AllValid, setAllValid] = useState("");
+const [isEmailValid, setEmailValid] = useState(false);
+const [isPasswordValid, setPasswordValid] = useState(false);
+const [isUserExist, setUserExist] = useState("");
+const [isAllValid, setAllValid] = useState("");
 const [loading, setLoading] = useState(false);
 const [isMessage, setMessage] = useState({
   message: "",
@@ -23,12 +24,15 @@ const [isMessage, setMessage] = useState({
 const handleEmail = (e) => {
   const value = e.target.value;
     const valueNoSpace = value.includes(" ") ? false : true;
-    const oneAt = value.match(/@/g)?.length === 1 ? true : false;
+    const isThereaddress = value.split("@")[0] ? true : false;
+    const justoneAt = value.match(/@/g)?.length === 1 ? true : false;
+    const isThereDomain = value.split("@")[1]?.split(".")[0] ? true : false;
+    const isThereTopLevelDomain = value.split(".")[1]?.length > 0 ? true : false;
 
     setEmail(valueNoSpace);
-    valueNoSpace &&  oneAt
-      ? setMessage({ message: "" })
-      : setMessage({ message: "Email must contain one @" });
+    valueNoSpace &&  isThereaddress && justoneAt && isThereDomain && isThereTopLevelDomain
+      ? setEmailValid(true)
+      : setEmailValid(false);
   };
 
   const handlePassword = (e) => {
@@ -38,29 +42,40 @@ const handleEmail = (e) => {
     const containsNumber = value.match(/[0-9]/) ? true : false;
     const containsLetter = value.match(/[a-zA-Z]/) ? true : false;
     setPassword(value);
-    value.length >= minLength && value.length <= maxLength
-      ? setMessage({ message: "" })
-      : setMessage({ message: "Password must be between 8 and 16 characters" });
-    containsNumber && containsLetter
-      ? setMessage({ message: "" })
-      : setMessage({ message: "Password must contain at least one number and one letter" });
+    value.length >= minLength && value.length <= maxLength && containsLetter && containsNumber
+      ? setPasswordValid(true)
+      : setPasswordValid(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (loading){
+    if (loading) {
       return;
     }
 
-    if (Email && Password) {
+    if (isEmailValid && isPasswordValid) {
       setLoading(true);
 
-   
-  } else {
-    setAllValid("invalid");
-    setUserExist("");
-  }
-};
+    //   axios
+    //     .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", { Email, Password })
+    //     .then((response) => 
+    //       setUserExist("exists");
+    //       setAllValid("valid");
+    //       setLoading(false);
+    //       // Cookies.set("token", response.data.data.token);
+    //     })
+    //     .catch((error) => {
+    //       setUserExist("doesn't exist");
+    //       setAllValid("valid");
+    //       setLoading(false);
+    //       console.log(error);
+    //     });
+    // } else {
+    //   setAllValid("not valid");
+    //   setUserExist("");
+     }
+  };
+
 
   return (
     <section className="w-full bg-white">
@@ -94,6 +109,7 @@ const handleEmail = (e) => {
                     className="border-2 m-auto border-black w-96 h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                     placeholder="Enter Your Email"
                     onChange={(e) => {handleEmail(e)}}
+                    validators={[isEmailValid, isAllValid]}
                   />
                 </div>
                 <div className="relative pt-5 text-center md:text-left">
@@ -105,6 +121,7 @@ const handleEmail = (e) => {
                     className="w-96 border-2 m-auto border-black h-10 pt-2.5 block px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                     placeholder="Password"
                     onChange={(e) => {handlePassword(e)}}
+                    validators={[isPasswordValid, isAllValid]}
                   />
                   <div className="absolute mt-14 mr-3 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                     <svg
@@ -172,7 +189,7 @@ const handleEmail = (e) => {
                   <p className="w-full text-sm text-black text-xl">
                     Doesn’t have account?{" "}
                     <a
-                      href="#_"
+                      href="/signup"
                       className="text-center md:text-left text-black underline font-semibold text-xl"
                     >
                       Sign up
