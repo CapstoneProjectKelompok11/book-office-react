@@ -75,7 +75,7 @@ const LandingPage = () => {
                   <div key={builds.id}>
                     {/* <p> {builds.name}</p> */}
                     {builds.images.slice(0, 1).map((tes) => {
-                      // console.log("file name", tes.fileName);
+                      console.log("file name", tes.fileName);
                       return (
                         <>
                           <div key={builds.id}>
@@ -152,7 +152,7 @@ const LandingPage = () => {
         <p className="ml-20 mt-40 text-2xl font-semibold">Kuningan</p>
         <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
           {data.map((builds) => {
-            console.log(builds.complex);
+            // console.log(builds.complex);
             return (
               <>
                 {builds.complex.complex_name === "Kuningan"
@@ -160,7 +160,7 @@ const LandingPage = () => {
                       (
                         tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                       ) => {
-                        console.log(tes.filename);
+                        // console.log(tes.filename);
                         return (
                           <>
                             <NavLink to={`/detail/${builds.id}`}>
