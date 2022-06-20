@@ -66,36 +66,36 @@ const LandingPage = () => {
       <div className="mx-auto py-16 px-4 text-center">
         <h2 className="font-medium">Top Places in Jakarta</h2>
         <div className="justify-between pt-12">
-          <div className="grid grid-cols-6 gap-4 items-center ">
-            <div className="flex col-span-1"></div>
+          <div className="grid grid-cols-6 gap-4">
             {data.map((builds) => {
               console.log("builds", builds);
               return (
-                <>
+                <div>
                   <div key={builds.id}>
                     {/* <p> {builds.name}</p> */}
                     {builds.images.slice(0, 1).map((tes) => {
-                      console.log("file name", tes.fileName);
+                      // console.log("file name", tes.fileName);
                       return (
                         <>
-                          <div key={builds.id}>
-                            <NavLink to={`/detail/${builds.id}`}>
-                              <img
-                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                alt="img"
-                                className="h-full object-cover"
-                                key={tes.id}
-                              />
-                            </NavLink>
+                          <div className="w-full h-full">
+                            <div key={builds.id}>
+                              <NavLink to={`/detail/${builds.id}`}>
+                                <img
+                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                  alt="img"
+                                  // className="w-full h-full object-fill"
+                                  key={tes.id}
+                                />
+                              </NavLink>
+                            </div>
                           </div>
                         </>
                       );
                     })}
                   </div>
-                </>
+                </div>
               );
             })}
-            <div className="flex col-span-1"></div>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ const LandingPage = () => {
         <p className="ml-20 mt-40 text-2xl font-semibold">Kuningan</p>
         <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
           {data.map((builds) => {
-            // console.log(builds.complex);
+            console.log(builds.complex);
             return (
               <>
                 {builds.complex.complex_name === "Kuningan"
@@ -160,7 +160,7 @@ const LandingPage = () => {
                       (
                         tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                       ) => {
-                        // console.log(tes.filename);
+                        console.log(tes.filename);
                         return (
                           <>
                             <NavLink to={`/detail/${builds.id}`}>
