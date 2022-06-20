@@ -74,88 +74,60 @@ const DetailPage = () => {
         <div>
           <div className="max-w-[1240px] mx-auto">
             <div className="p-5 text-center text-base font-normal">
-              {loading ? (
-                <div>
-                  <Loading />
-                  <Skeleton width={400} />
-                </div>
-              ) : (
-                <p>
-                  Home {">"} {data.data.complex.complex_name} {">"}{" "}
-                  {data.data.name}
-                </p>
-              )}
+              <p>
+                Home {">"} {data.data.complex.complex_name} {">"}{" "}
+                {data.data.name}
+              </p>
             </div>
             {/* -----------------Image Atas----------------------- */}
             <div className="grid grid-cols-3 py-4 gap-8">
-              {loading ? (
-                <Skeleton width={400} />
-              ) : (
-                data.data.images.slice(0, 1).map((gambar) => {
-                  console.log(gambar);
-                  return (
-                    <>
-                      <img
-                        className="w-full h-full object-cover col-span-2 row-span-2"
-                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${gambar.fileName}`}
-                        alt="/"
-                      />
-                    </>
-                  );
-                })
-              )}
-              {loading ? (
-                <Skeleton width={400} />
-              ) : (
-                data.data.images.slice(1, 3).map((gambar) => {
-                  console.log(gambar);
-                  return (
-                    <>
-                      <img
-                        className="w-full h-full object-cover"
-                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${gambar.fileName}`}
-                        alt="/"
-                      />
-                    </>
-                  );
-                })
-              )}
+              {data.data.images.slice(0, 1).map((gambar) => {
+                console.log(gambar);
+                return (
+                  <>
+                    <img
+                      className="w-full h-full object-cover col-span-2 row-span-2"
+                      src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${gambar.fileName}`}
+                      alt="/"
+                    />
+                  </>
+                );
+              })}
+              {data.data.images.slice(1, 3).map((gambar) => {
+                console.log(gambar);
+                return (
+                  <>
+                    <img
+                      className="w-full h-full object-cover"
+                      src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${gambar.fileName}`}
+                      alt="/"
+                    />
+                  </>
+                );
+              })}
             </div>
             {/*End of Image Atas*/}
 
             {/* ------------Address-------------- */}
             <div>
               <div className="text-2xl font-medium pt-12">
-                {loading ? (
-                  <Skeleton width={400} />
-                ) : (
-                  <p>
-                    {data.data.complex.complex_name}, {data.data.name}
-                  </p>
-                )}
+                <p>
+                  {data.data.complex.complex_name}, {data.data.name}
+                </p>
               </div>
               <div className="p-5 items-center text-black/60">
-                {loading ? (
-                  <Skeleton width={400} />
-                ) : (
-                  <div className="flex py-2">
-                    <HiLocationMarker size={24} />
-                    <p className="px-2 text-xl font-medium">
-                      {data.data.address}
-                    </p>
-                  </div>
-                )}
-
-                {loading ? (
-                  <Skeleton width={400} />
-                ) : (
-                  <div className="flex py-2">
-                    <FaCity size={24} />
-                    <p className="px-2 text-xl font-medium">
-                      {data.data.address}
-                    </p>
-                  </div>
-                )}
+                <div className="flex py-2">
+                  <HiLocationMarker size={24} />
+                  <p className="px-2 text-xl font-medium">
+                    {data.data.address}
+                  </p>
+                </div>{" "}
+                <div className="flex py-2">
+                  <FaCity size={24} />
+                  <p className="px-2 text-xl font-medium">
+                    {data.data.address}
+                  </p>
+                </div>
               </div>
             </div>
             {/* End of Address */}
@@ -167,11 +139,11 @@ const DetailPage = () => {
               <div className="px-5 items-center flex">
                 <div className="py-2 px-5 text-center text-lg font-normal">
                   <p className="text-black/60 ">Capacity</p>
-                  <p>200</p>
+                  <p>{data.data.capacity}</p>
                 </div>
                 <div className="py-2 px-5 text-center text-lg font-normal">
                   <p className="text-black/60 ">Jumlah Lantai</p>
-                  <p>200</p>
+                  <p>{data.data.floor_count}</p>
                 </div>
                 <div className="py-2 px-5 text-center text-lg font-normal ">
                   <p className="text-black/60 ">Facility</p>
@@ -185,19 +157,7 @@ const DetailPage = () => {
                 </div>
               </div>
               <div className="py-3">
-                <p>
-                  Equity Tower adalah gedung pencakar langit yang terletak di
-                  Sudirman Central Business District, Senayan, Kebayoran Baru,
-                  Jakarta Selatan. Gedung ini berfungsi sebagai gedung
-                  perkantoran komersial. Beberapa fasilitas yang dimilikinya
-                  seperti area parkir, aula mutifungsi, ATM Center, kantin,
-                  toilet, tempat informasi, dan musala. Tower ini memiliki akses
-                  yang mudah dan terletak di pusat kota sehingga mudah untuk
-                  dijangkau untuk berbagi transportasi umum. Gedung ini dibagi
-                  menjadi dua bagian yaitu lantai bagian bawah yang terdiri dari
-                  basemant hingga lantai 29 serta lantai bagian atas terdiri
-                  dari lantai 30 hingga lantai 50.
-                </p>
+                <p>{data.data.description}</p>
               </div>
             </div>
             {/* End of About this Building */}
