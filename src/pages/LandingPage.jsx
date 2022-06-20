@@ -68,27 +68,23 @@ const LandingPage = () => {
         <div className="justify-between pt-12">
           <div className="grid grid-cols-6 gap-4">
             {data.map((builds) => {
-              console.log("builds", builds);
+              // console.log("builds", builds);
               return (
-                <div>
+                <div className="border-2 ">
                   <div key={builds.id}>
                     {/* <p> {builds.name}</p> */}
                     {builds.images.slice(0, 1).map((tes) => {
                       // console.log("file name", tes.fileName);
                       return (
                         <>
-                          <div className="w-full h-full">
-                            <div key={builds.id}>
-                              <NavLink to={`/detail/${builds.id}`}>
-                                <img
-                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                  alt="img"
-                                  // className="w-full h-full object-fill"
-                                  key={tes.id}
-                                />
-                              </NavLink>
-                            </div>
-                          </div>
+                          <NavLink to={`/detail/${builds.id}`}>
+                            <img
+                              className="object-fill "
+                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                              alt="img"
+                              key={tes.id}
+                            />
+                          </NavLink>
                         </>
                       );
                     })}
