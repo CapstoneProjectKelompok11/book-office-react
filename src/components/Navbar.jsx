@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineInbox, AiOutlineHeart } from "react-icons/ai";
 import { VscAccount } from "react-icons/vsc";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -15,7 +16,9 @@ const Navbar = () => {
           </div>
           <div>
             <ul className="flex">
-              <li className="mx-4">Home</li>
+              <NavLink to={`/`}>
+                <li className="mx-4">Home</li>
+              </NavLink>
               <li className="mx-4">Rent an Office</li>
               <li className="mx-4">About Us</li>
               <li className="mx-4">Find Us</li>

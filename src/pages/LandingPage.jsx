@@ -18,7 +18,7 @@ const LandingPage = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?page=0&limit=10"
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10"
       )
       .then((res) => {
         setData(res.data.data);
@@ -67,33 +67,32 @@ const LandingPage = () => {
       <div className="mx-auto py-16 px-4 text-center">
         <h2 className="font-medium">Top Places in Jakarta</h2>
         <div className="justify-between pt-12">
-          <div className="grid grid-cols-6 gap-4 items-center ">
-            <div className="flex col-span-1"></div>
+          <div className="grid grid-cols-6 gap-4">
             {data.map((builds) => {
               // console.log("builds", builds);
               return (
-                <>
+                <div className="border-2 ">
                   <div key={builds.id}>
                     {/* <p> {builds.name}</p> */}
                     {builds.images.slice(0, 1).map((tes) => {
                       // console.log("file name", tes.fileName);
                       return (
                         <>
-                          <div key={builds.id}>
+                          <NavLink to={`/detail/${builds.id}`}>
                             <img
+                              className="object-fill "
                               src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                               alt="img"
-                              className="h-full object-cover"
+                              key={tes.id}
                             />
-                          </div>
+                          </NavLink>
                         </>
                       );
                     })}
                   </div>
-                </>
+                </div>
               );
             })}
-            <div className="flex col-span-1"></div>
           </div>
         </div>
       </div>
