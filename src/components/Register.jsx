@@ -18,7 +18,6 @@ const Register = () => {
   const [FrontName, setFrontName] = useState("");
   const [LastName, setLastName] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
-  const [Address, setAddress] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [PasswordConfirm, setPasswordConfirm] = useState("");
@@ -56,16 +55,6 @@ const Register = () => {
       setPhoneNumber("Phone Number must be at least 10 characters");
     } else {
       setPhoneNumber("");
-    }
-  };
-
-  const handleAddress = (e) => {
-    const value = e.target.value;
-    const minLength = 3;
-    if (value.length < minLength) {
-      setAddress("Address must be at least 3 characters");
-    } else {
-      setAddress("");
     }
   };
 
@@ -112,7 +101,6 @@ const Register = () => {
       FrontName &&
       LastName &&
       PhoneNumber &&
-      Address &&
       Email &&
       Password &&
       PasswordConfirm
@@ -123,7 +111,6 @@ const Register = () => {
           first_name: dataForm.FrontName,
           last_name: dataForm.LastName,
           phone: dataForm.PhoneNumber,
-          address: dataForm.Address,
           email: dataForm.Email,
           password: dataForm.Password,
         })
@@ -200,18 +187,6 @@ const Register = () => {
                       className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                       onChange={(e) => {
                         handlePhoneNumber(e);
-                      }}
-                    />
-                  </div>
-                  <div className="relative pt-5">
-                    <label className="font-semibold text-xl text-gray-900">
-                      Address
-                    </label>
-                    <input
-                      type="textarea"
-                      className="border-2 border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
-                      onChange={(e) => {
-                        handleAddress(e);
                       }}
                     />
                   </div>
