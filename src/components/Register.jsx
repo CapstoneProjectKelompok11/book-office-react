@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import img from "../image/bglogin.png";
+import axiosInstance from "../networks/api"
 
 const Register = () => {
   const [dataForm, setDataForm] = useState({
@@ -117,14 +118,14 @@ const Register = () => {
       PasswordConfirm
     ) {
       setLoading(true);
-      axios
-        .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/register", {
-          FrontName: dataForm.FrontName,
-          LastName: dataForm.LastName,
-          PhoneNumber: dataForm.PhoneNumber,
-          Address: dataForm.Address,
-          Email: dataForm.Email,
-          Password: dataForm.Password,
+      axiosInstance
+      .post("/register", {
+          first_name: dataForm.FrontName,
+          last_name: dataForm.LastName,
+          phone: dataForm.PhoneNumber,
+          address: dataForm.Address,
+          email: dataForm.Email,
+          password: dataForm.Password,
         })
         .then((response) => {
           setUserExist("does't exist");
