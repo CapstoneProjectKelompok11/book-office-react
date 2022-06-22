@@ -2,123 +2,140 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import img from "../image/bglogin.png";
-import axiosInstance from "../networks/api"
+import axiosInstance from "../networks/api";
+import {useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [dataForm, setDataForm] = useState({
-    FrontName: "",
-    LastName: "",
-    PhoneNumber: "",
-    Address: "",
-    Email: "",
-    Password: "",
+    frontName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
     passwordConfirm: "",
   });
 
-  const [FrontName, setFrontName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const [PhoneNumber, setPhoneNumber] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [frontName, setFrontName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [PasswordConfirm, setPasswordConfirm] = useState("");
-  const [UserExist, setUserExist] = useState("");
-  const [AllValid, setAllValid] = useState("");
+  const [userExist, setUserExist] = useState("");
+  const [allValid, setAllValid] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const [isMessage, setMessage] = useState({
     message: "",
   });
 
   const handleFirstName = (e) => {
-    const value = e.target.value;
+    const frontName = e.target.value;
     const minLength = 3;
-    if (value.length < minLength) {
+    if (frontName.length < minLength) {
       setFrontName("First Name must be at least 3 characters");
     } else {
       setFrontName("");
+      setDataForm((state) => ({ ...state, frontName }));
     }
   };
   const handleLastName = (e) => {
-    const value = e.target.value;
+    const lastName = e.target.value;
     const minLength = 3;
-    if (value.length < minLength) {
+    if (lastName.length < minLength) {
       setLastName("Last Name must be at least 3 characters");
     } else {
       setLastName("");
+      setDataForm((state) => ({ ...state, lastName }));
     }
   };
 
   const handlePhoneNumber = (e) => {
-    const value = e.target.value;
+    const phoneNumber = e.target.value;
+    console.log(e)
     const minLength = 10;
-    if (value.length < minLength) {
+    if (phoneNumber.length < minLength) {
       setPhoneNumber("Phone Number must be at least 10 characters");
     } else {
       setPhoneNumber("");
+      setDataForm((state) => ({ ...state, phoneNumber }));
     }
   };
 
   const handlePassword = (e) => {
-    const value = e.target.value;
+    const password = e.target.value;
     const minLength = 8;
     const maxLength = 16;
-    const containsNumber = value.match(/[0-9]/) ? true : false;
-    const containsLetter = value.match(/[a-zA-Z]/) ? true : false;
-    setPassword(value);
-    value.length >= minLength &&
-    value.length <= maxLength &&
-    containsNumber &&
-    containsLetter
-      ? setPasswordConfirm("")
-      : setPasswordConfirm(
-          "Password must be at least 8 characters and contain at least one number and one letter"
-        );
+    const containsNumber = password.match(/[0-9]/) ? true : false;
+    const containsLetter = password.match(/[a-zA-Z]/) ? true : false;
+    setPassword(password);
+    if (
+      password.length >= minLength &&
+      password.length <= maxLength &&
+      containsNumber &&
+      containsLetter
+    ) {
+      setPasswordConfirm("");
+      setDataForm((state) => ({ ...state, password }));
+    } else {
+      setPasswordConfirm(
+        "Password must be at least 8 characters and contain at least one number and one letter"
+      );
+    }
   };
 
   const handlePasswordConfirm = (e) => {
-    const value = e.target.value;
-    setPasswordConfirm(value);
-    value === Password
-      ? setPasswordConfirm("")
-      : setPasswordConfirm("Password must be the same");
+    const passwordConfirm = e.target.value;
+    setPasswordConfirm(passwordConfirm);
+    if (passwordConfirm === password) {
+      setPasswordConfirm("");
+      setDataForm((state) => ({ ...state, passwordConfirm }));
+    } else {
+      setPasswordConfirm("Password must be the same");
+    }
   };
 
   const handleEmail = (e) => {
-    const value = e.target.value;
-    const valueNoSpace = value.includes(" ") ? false : true;
-    const oneAt = value.match(/@/g)?.length === 1 ? true : false;
+    const email = e.target.value;
+    const valueNoSpace = email.includes(" ") ? false : true;
+    const oneAt = email.match(/@/g)?.length === 1 ? true : false;
 
-    setEmail(value);
-    valueNoSpace && oneAt
-      ? setMessage({ message: "" })
-      : setMessage({ message: "Email must contain one @" });
+    setEmail(email);
+    if (valueNoSpace && oneAt) {
+      setMessage({ message: "" });
+      setDataForm((state) => ({ ...state, email }));
+    } else {
+      setMessage({ message: "Email must contain one @" });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(dataForm);
 
     if (
-      FrontName &&
-      LastName &&
-      PhoneNumber &&
-      Email &&
-      Password &&
-      PasswordConfirm
+      dataForm.frontName &&
+      dataForm.lastName &&
+      dataForm.phoneNumber &&
+      dataForm.email &&
+      dataForm.password &&
+      dataForm.passwordConfirm
     ) {
       setLoading(true);
       axiosInstance
-      .post("/register", {
-          first_name: dataForm.FrontName,
-          last_name: dataForm.LastName,
-          phone: dataForm.PhoneNumber,
-          email: dataForm.Email,
-          password: dataForm.Password,
+        .post("/register", {
+          first_name: dataForm.frontName,
+          last_name: dataForm.lastName,
+          phone: dataForm.phoneNumber,
+          email: dataForm.email,
+          password: dataForm.password,
         })
         .then((response) => {
           setUserExist("does't exist");
           setAllValid("valid");
           setLoading(false);
-          console.log(response.data.data);
+          navigate('/login')
         })
         .catch((error) => {
           setUserExist("exists");
@@ -248,12 +265,12 @@ const Register = () => {
                     </div>
                   </div>
                   <div className="relative py-10">
-                    <a
-                      href="/login"
+                    <button
+                      type="submit"
                       className="h-10 inline-block w-full px-3 py-1 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
                     >
                       Register Account
-                    </a>           
+                    </button>
                   </div>
                 </div>
               </div>
