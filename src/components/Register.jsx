@@ -88,7 +88,7 @@ const Register = () => {
     const valueNoSpace = value.includes(" ") ? false : true;
     const oneAt = value.match(/@/g)?.length === 1 ? true : false;
 
-    setEmail(valueNoSpace);
+    setEmail(value);
     valueNoSpace && oneAt
       ? setMessage({ message: "" })
       : setMessage({ message: "Email must contain one @" });
@@ -235,6 +235,7 @@ const Register = () => {
                         handlePasswordConfirm(e);
                       }}
                     />
+                    <p>{PasswordConfirm}</p>
                     <div class="absolute mt-14 mr-2 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -248,13 +249,11 @@ const Register = () => {
                   </div>
                   <div className="relative py-10">
                     <a
-                      href="#_"
+                      href="/login"
                       className="h-10 inline-block w-full px-3 py-1 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
                     >
                       Register Account
-                    </a>
-
-            
+                    </a>           
                   </div>
                 </div>
               </div>

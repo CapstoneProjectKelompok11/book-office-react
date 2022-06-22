@@ -25,6 +25,7 @@ const Login = () => {
 
   const handleEmail = (e) => {
     const value = e.target.value;
+    console.log("value", value)
     const valueNoSpace = value.includes(" ") ? false : true;
     const isThereaddress = value.split("@")[0] ? true : false;
     const justoneAt = value.match(/@/g)?.length === 1 ? true : false;
@@ -32,7 +33,7 @@ const Login = () => {
     const isThereTopLevelDomain =
       value.split(".")[1]?.length > 0 ? true : false;
 
-    setEmail(valueNoSpace);
+    setEmail(value);
     valueNoSpace &&
     isThereaddress &&
     justoneAt &&
@@ -124,6 +125,7 @@ const Login = () => {
                         handleEmail(e);
                       }}
                       validators={[isEmailValid, isAllValid]}
+                      alertMessage="Gunakan format email dengan benar"
                     />
                   </div>
                   <div className="relative pt-5 text-center md:text-left">
