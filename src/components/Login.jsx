@@ -12,8 +12,8 @@ const Login = () => {
     Password: "",
   });
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isEmailValid, setEmailValid] = useState(false);
   const [isPasswordValid, setPasswordValid] = useState(false);
   const [isUserExist, setUserExist] = useState("");
@@ -24,38 +24,49 @@ const Login = () => {
   });
 
   const handleEmail = (e) => {
-    const value = e.target.value;
-    console.log("value", value)
-    const valueNoSpace = value.includes(" ") ? false : true;
-    const isThereaddress = value.split("@")[0] ? true : false;
-    const justoneAt = value.match(/@/g)?.length === 1 ? true : false;
-    const isThereDomain = value.split("@")[1]?.split(".")[0] ? true : false;
+    const email = e.target.value;
+    console.log("value", email);
+    const valueNoSpace = email.includes(" ") ? false : true;
+    const isThereaddress = email.split("@")[0] ? true : false;
+    const justoneAt = email.match(/@/g)?.length === 1 ? true : false;
+    const isThereDomain = email.split("@")[1]?.split(".")[0] ? true : false;
     const isThereTopLevelDomain =
-      value.split(".")[1]?.length > 0 ? true : false;
+      email.split(".")[1]?.length > 0 ? true : false;
 
-    setEmail(value);
-    valueNoSpace &&
-    isThereaddress &&
-    justoneAt &&
-    isThereDomain &&
-    isThereTopLevelDomain
-      ? setEmailValid(true)
-      : setEmailValid(false);
+    setEmail(email);
+    if (
+      valueNoSpace &&
+      isThereaddress &&
+      justoneAt &&
+      isThereDomain &&
+      isThereTopLevelDomain
+    ) {
+      setEmailValid(true);
+      setDataForm((state) => ({ ...state, email }));
+    } else {
+      setEmailValid(false);
+    }
   };
 
   const handlePassword = (e) => {
-    const value = e.target.value;
+    const password = e.target.value;
     const minLength = 8;
     const maxLength = 16;
-    const containsNumber = value.match(/[0-9]/) ? true : false;
-    const containsLetter = value.match(/[a-zA-Z]/) ? true : false;
-    setPassword(value);
-    value.length >= minLength &&
-    value.length <= maxLength &&
-    containsLetter &&
-    containsNumber
-      ? setPasswordValid(true)
-      : setPasswordValid(false);
+    const containsNumber = password.match(/[0-9]/) ? true : false;
+    const containsLetter = password.match(/[a-zA-Z]/) ? true : false;
+    setPassword(password);
+    if (
+      password.length >= minLength &&
+      password.length <= maxLength &&
+      containsLetter &&
+      containsNumber
+    ) {
+      setPasswordValid(true);
+      setDataForm((state) => ({ ...state, password }));
+
+    } else {
+      setPasswordValid(false);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -70,7 +81,7 @@ const Login = () => {
       axiosInstance
         .post("/login", {
           email: dataForm.Email,
-          password: dataForm.Password
+          password: dataForm.Password,
         })
         .then((response) => {
           setUserExist("exists");
