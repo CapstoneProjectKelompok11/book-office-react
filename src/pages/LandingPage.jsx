@@ -9,7 +9,7 @@ import img3 from "../assets/img-3.png";
 import img4 from "../assets/img-4.png";
 import img5 from "../assets/asas.png";
 import Footer from "../components/Footer";
-import Listing from "./Listing";
+// import Listing from "./Listing";
 
 const LandingPage = () => {
   const [data, setData] = useState([]);
@@ -95,6 +95,7 @@ const LandingPage = () => {
             })}
           </div>
         </div>
+        <NavLink to="./Listing.jsx">More List</NavLink>
       </div>
       {/* -----------------End of Top Places-------------------- */}
       <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
