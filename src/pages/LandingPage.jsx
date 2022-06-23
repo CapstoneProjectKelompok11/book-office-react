@@ -95,7 +95,9 @@ const LandingPage = () => {
             })}
           </div>
         </div>
-        <NavLink to="./Listing.jsx">More List</NavLink>
+        <div className="text-center p-4">
+          <NavLink to="/listing">More List</NavLink>
+        </div>
       </div>
       {/* -----------------End of Top Places-------------------- */}
       <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
