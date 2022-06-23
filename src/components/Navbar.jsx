@@ -11,7 +11,9 @@ const Navbar = () => {
         <div className="flex w-full justify-between items-center h-[60px] px-3 py-3 text-white bg-[#4D89FF]">
           <div className="flex items-center">
             <div className="w-28 h-10 ml-20">
-              <img src={logo} alt="" />
+              <NavLink to={`/`}>
+                <img src={logo} alt="" />{" "}
+              </NavLink>
             </div>
           </div>
           <div>
@@ -19,7 +21,9 @@ const Navbar = () => {
               <NavLink to={`/`}>
                 <li className="mx-4">Home</li>
               </NavLink>
-              <li className="mx-4">Rent an Office</li>
+              <NavLink to={`/listing`}>
+                <li className="mx-4">Rent an Office</li>
+              </NavLink>
               <li className="mx-4">About Us</li>
               <li className="mx-4">Find Us</li>
             </ul>
