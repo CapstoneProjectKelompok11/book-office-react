@@ -8,8 +8,12 @@ import Register from "./components/Register";
 function App() {
   return (
     <>
-     <Route path="/Login/" element={<Login />} />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login />} />
       <Route path="/Register/" element={<Register />} />
+    </Routes>
+  </BrowserRouter>
 
     </>
   );

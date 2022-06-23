@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../networks/api";
 import img2 from "../image/Image.png";
 import img from "../image/logologin.png";
@@ -19,6 +20,7 @@ const Login = () => {
   const [isUserExist, setUserExist] = useState("");
   const [isAllValid, setAllValid] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [isMessage, setMessage] = useState({
     message: "",
   });
@@ -63,7 +65,6 @@ const Login = () => {
     ) {
       setPasswordValid(true);
       setDataForm((state) => ({ ...state, password }));
-
     } else {
       setPasswordValid(false);
     }
@@ -87,6 +88,7 @@ const Login = () => {
           setUserExist("exists");
           setAllValid("valid");
           setLoading(false);
+          navigate("/home");
           Cookies.set("token", response.data.data.token);
         })
         .catch((error) => {
@@ -221,7 +223,7 @@ const Login = () => {
                     <p className="w-full text-sm text-black text-xl">
                       Doesn’t have account?{" "}
                       <a
-                        href="/signup"
+                        href="/register"
                         className="text-center md:text-left text-black underline font-semibold text-xl"
                       >
                         Sign up
