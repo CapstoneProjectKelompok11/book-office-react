@@ -8,7 +8,7 @@ import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
 import { AiOutlineWifi, AiFillBank } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 
-const ListingPage = ({ item, hapus }) => {
+const ListingPage = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const [error, setError] = useState("");
@@ -38,17 +38,17 @@ const ListingPage = ({ item, hapus }) => {
         </div>
       ) : (
         <>
-          <div className="max-w-[1300px] mx-auto">
+          <div className="max-w-[1300px] conatiner mx-auto px-4">
             <div className="p-5 text-center text-base font-normal">
               <p>Home {">"} ALL ROOM</p>
             </div>
-            <div className="w-full my-auto mx-auto border-2 grid grid-cols-3 gap-3 p-4 shadow-gray-500">
+            <div className="w-full my-auto mx-auto border-2 rounded grid grid-cols-3 gap-3 p-4 shadow-gray-500">
               <div className="">
                 <p>Search</p>
                 <form className="flex items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-white bg-gray-100/90">
                   <div className="flex items-center">
                     <input
-                      className="bg-transparent w-[150px] focus:outline-none mx-4 text-black"
+                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
                       type="text"
                       placeholder="Search a place"
                     />
@@ -68,7 +68,7 @@ const ListingPage = ({ item, hapus }) => {
                     <select
                       id="location"
                       name="location"
-                      className="bg-transparent w-[150px] focus:outline-none mx-4 text-black"
+                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
                     >
                       <option value="jakarta barat">Jakarta Barat</option>
                       <option value="jakarta pusat">Jakarta Pusat</option>
@@ -92,7 +92,7 @@ const ListingPage = ({ item, hapus }) => {
                     <select
                       id="location"
                       name="location"
-                      className="bg-transparent w-[150px] focus:outline-none mx-4 text-black"
+                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
                     >
                       <option value="jakarta barat">Jakarta Barat</option>
                       <option value="jakarta pusat">Jakarta Pusat</option>
