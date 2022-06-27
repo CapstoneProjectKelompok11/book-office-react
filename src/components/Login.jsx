@@ -138,7 +138,7 @@ const Login = () => {
                         handleEmail(e);
                       }}
                       validators={[isEmailValid, isAllValid]}
-                      alertMessage="Gunakan format email dengan benar"
+                      alertMessage="Email yang dimasukan tidak sesuai"
                     />
                   </div>
                   <div className="relative pt-5 text-center md:text-left">
@@ -153,6 +153,7 @@ const Login = () => {
                         handlePassword(e);
                       }}
                       validators={[isPasswordValid, isAllValid]}
+                      alertMessage="Password yang dimasukkan tidak sesuai"
                     />
                     <div className="absolute mt-14 mr-3 inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                       <svg
@@ -179,12 +180,12 @@ const Login = () => {
                     </label>
                   </div>
                   <div className="pt-5 text-center md:text-left">
-                    <a
-                      href="#_"
+                    <button
+                    type="submit"
                       className="w-96 h-10 inline-block w-full px-3 py-1 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
                     >
                       Login
-                    </a>
+                    </button>
                   </div>
                   <div className="container-hr m-auto">
                     <span className="span-hr">or</span>
