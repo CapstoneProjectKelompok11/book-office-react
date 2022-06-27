@@ -31,7 +31,9 @@ const Navbar = () => {
           <div className="flex">
             <AiOutlineInbox size={18} />
             <AiOutlineHeart size={18} className="mx-4" />
-            <VscAccount size={18} className="mr-20" />
+            <NavLink to={`/profile`}>
+              <VscAccount size={18} className="mr-20" />
+            </NavLink>
           </div>
         </div>
       </div>
