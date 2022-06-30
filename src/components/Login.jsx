@@ -88,7 +88,8 @@ const Login = () => {
           setUserExist("exists");
           setAllValid("valid");
           setLoading(false);
-          navigate("/home");
+          console.log("response", response)
+          // navigate("/home");
           Cookies.set("token", response.data.data.token);
         })
         .catch((error) => {

@@ -53,7 +53,7 @@ const Register = () => {
 
   const handlePhoneNumber = (e) => {
     const phoneNumber = e.target.value;
-    console.log(e)
+    // console.log(e)
     const minLength = 10;
     if (phoneNumber.length < minLength) {
       setPhoneNumber("Phone Number must be at least 10 characters");
@@ -142,10 +142,7 @@ const Register = () => {
           setAllValid("valid");
           setLoading(false);
         });
-      setMessage({
-        ...isMessage,
-        message: "Berhasil",
-      });
+      alert("Akun berhasil dibuat")
     } else {
       setAllValid("invalid");
       setUserExist("");
