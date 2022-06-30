@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './pages/Landing Page/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import DetailPage from "./pages/DetailPage";
-import LandingPage from "./pages/LandingPage";
-import Listing from "./pages/ListingPage";
-import Profile from "./pages/Profile";
+import DetailPage from "./pages/DetailPage/DetailPage";
+import LandingPage from "./pages/Landing Page/LandingPage";
+import Listing from "./pages/Listing/ListingPage";
+import Profile from "./pages/Profile/Profile";
 
 
 
@@ -14,12 +13,12 @@ function App() {
     <div>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home />}/>
+      <Route path="/" element={<LandingPage />}/>
       <Route path="/Login/" element={<Login />} />
       <Route path="/Register/" element={<Register />} />
-      <Route path="/listing" element={<Listing />}></Route>
-      <Route path="/profile" element={<Profile />}></Route>
-      <Route path="/detail/:id" element={<DetailPage />}></Route>
+      <Route path="/Listing" element={<Listing />}/>
+      <Route path="/Profile" element={<Profile />}/>
+      <Route path="/Detail/:id" element={<DetailPage />}/>
     </Routes>
   </BrowserRouter>
   </div>

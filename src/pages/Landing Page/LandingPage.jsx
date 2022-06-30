@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BiSearchAlt } from "react-icons/bi";
-import banner from "../assets/Banner.png";
-import img1 from "../assets/img-1.png";
-import img2 from "../assets/img-2.png";
-import img3 from "../assets/img-3.png";
-import img4 from "../assets/img-4.png";
-import img5 from "../assets/asas.png";
-import Footer from "../components/Footer";
+import banner from "../../assets/Banner.png";
+import img1 from "../../assets/img-1.png";
+import img2 from "../../assets/img-2.png";
+import img3 from "../../assets/img-3.png";
+import img4 from "../../assets/img-4.png";
+import img5 from "../../assets/asas.png";
+import Footer from "../../components/Footer";
 // import Listing from "./Listing";
 
 const LandingPage = () => {
@@ -27,7 +27,7 @@ const LandingPage = () => {
         setError(err);
       });
   }, []);
-
+  
   return (
     <div>
       {/* ----------------------Banner---------------- */}

@@ -11,7 +11,7 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
-import Loading from "../components/Loading";
+import Loading from "../../components/Loading";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -92,12 +92,6 @@ const DetailPage = () => {
                     {data.data.address}
                   </p>
                 </div>{" "}
-                <div className="flex py-2">
-                  <FaCity size={24} />
-                  <p className="px-2 text-xl font-medium">
-                    {data.data.address}
-                  </p>
-                </div>
               </div>
             </div>
             {/* End of Address */}
