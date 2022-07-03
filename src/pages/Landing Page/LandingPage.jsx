@@ -9,6 +9,7 @@ import img3 from "../../assets/img-3.png";
 import img4 from "../../assets/img-4.png";
 import img5 from "../../assets/asas.png";
 import Footer from "../../components/Footer";
+import "./Style.css"
 // import Listing from "./Listing";
 
 const LandingPage = () => {
