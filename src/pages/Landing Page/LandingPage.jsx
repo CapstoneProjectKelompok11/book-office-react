@@ -9,7 +9,7 @@ import img3 from "../../assets/img-3.png";
 import img4 from "../../assets/img-4.png";
 import img5 from "../../assets/asas.png";
 import Footer from "../../components/Footer";
-import "./Style.css"
+import "./Style.css";
 // import Listing from "./Listing";
 
 const LandingPage = () => {
@@ -28,7 +28,7 @@ const LandingPage = () => {
         setError(err);
       });
   }, []);
-  
+
   return (
     <div>
       {/* ----------------------Banner---------------- */}
@@ -168,7 +168,7 @@ const LandingPage = () => {
                               <img
                                 src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                 alt="img"
-                                className="h-full object-cover"
+                                className="h-full object-fill"
                                 key={tes.id}
                               />
                             </NavLink>
@@ -200,7 +200,7 @@ const LandingPage = () => {
                               <img
                                 src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                 alt="img"
-                                className="h-full object-cover"
+                                className="h-full object-fill"
                                 key={tes.id}
                               />
                             </NavLink>

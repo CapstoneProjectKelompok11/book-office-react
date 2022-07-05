@@ -132,7 +132,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
                     <img
-                      className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
+                      className="w-60 h-full rounded-tl-md rounded-bl-md"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -164,7 +164,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
                     <img
-                      className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
+                      className="w-60 h-full rounded-tl-md rounded-bl-md"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -319,7 +319,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -358,7 +358,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -400,7 +400,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
