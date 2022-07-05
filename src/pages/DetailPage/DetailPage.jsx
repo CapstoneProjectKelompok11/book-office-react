@@ -4,6 +4,7 @@ import axios from "axios";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
+import { IoIosArrowUp } from "react-icons/io";
 import {
   AiOutlineWifi,
   AiFillBank,
@@ -12,6 +13,7 @@ import {
 } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 import Loading from "../../components/Loading";
+import PopUpBooking from "../../components/PopUpBooking";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -435,6 +437,13 @@ const DetailPage = () => {
             </div>
             <div className=" w-full text-center text-base font-normal">
               1 2 3
+            </div>
+            <div className="my-9">
+              <a href="#Navbar">
+                <div className="bg-blue-500 rounded-full w-fit p-2 ml-auto">
+                  <IoIosArrowUp className=" text-white " size={30} />
+                </div>
+              </a>
             </div>
           </div>
         </div>
