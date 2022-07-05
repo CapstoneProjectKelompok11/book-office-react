@@ -256,8 +256,6 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      {/* <Listing item={""} hapus={""} /> */}
-      <Footer />
     </div>
   );
 };
