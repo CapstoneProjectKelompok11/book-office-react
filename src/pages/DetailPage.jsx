@@ -42,7 +42,7 @@ const DetailPage = () => {
         </div>
       ) : (
         <div>
-          <div className="max-w-[1240px] mx-auto">
+          <div className="max-w-[1240px] mx-auto p-4">
             <div className="p-5 text-center text-base font-normal">
               <p>
                 Home {">"} {data.data.complex.complex_name} {">"}{" "}
