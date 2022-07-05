@@ -30,6 +30,9 @@ const Navbar = () => {
           </div>
           <div className="flex">
             <AiOutlineInbox size={18} />
+            {/* <NavLink to={'./favorite'}>
+              <AiOutlineHeart size={18} className="mx-4" />
+            </NavLink> */}
             <NavLink to={'./favorite'}>
               <AiOutlineHeart size={18} className="mx-4" />
             </NavLink>
