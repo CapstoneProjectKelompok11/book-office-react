@@ -185,13 +185,13 @@ const LandingPage = () => {
           <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
             More Office in Kuningan
           </p>
-          <p className="ml-20 mt-24 text-2xl font-semibold">Jakarta Pusat</p>
+          <p className="ml-20 mt-24 text-2xl font-semibold">Tanah Abang</p>
           <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
             {data.map((builds) => {
               return (
                 <>
-                  {builds.complex.city.city_name === "Jakarta Pusat"
-                    ? builds.images.map(
+                  {builds.complex.complex_name === "Tanah Abang"
+                    ? builds.images.slice(0, 1).map(
                         (
                           tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                         ) => (
