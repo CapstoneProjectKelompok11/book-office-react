@@ -258,7 +258,7 @@ const MyFavorite = () => {
 };
 
 const Favorite = () => {
-  const [tab, setTab] = useState("My Favourite");
+  const [tab, setTab] = useState("My Favorite");
 
   const _handleClickMyProfile = (e) => {
     e.preventDefault();

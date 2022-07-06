@@ -33,7 +33,7 @@ const Navbar = () => {
             {/* <NavLink to={'./favorite'}>
               <AiOutlineHeart size={18} className="mx-4" />
             </NavLink> */}
-            <NavLink to={'./favorite'}>
+            <NavLink to={'/favorite'}>
               <AiOutlineHeart size={18} className="mx-4" />
             </NavLink>
             <NavLink to={`/profile`}>
