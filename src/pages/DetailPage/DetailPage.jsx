@@ -4,6 +4,7 @@ import axios from "axios";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
+import { IoIosArrowUp } from "react-icons/io";
 import {
   AiOutlineWifi,
   AiFillBank,
@@ -12,6 +13,7 @@ import {
 } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 import Loading from "../../components/Loading";
+import PopUpBooking from "../../components/PopUpBooking";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -132,7 +134,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
                     <img
-                      className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
+                      className="w-60 h-full rounded-tl-md rounded-bl-md"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -164,7 +166,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
                     <img
-                      className="w-60 h-full object-fill rounded-tl-md rounded-bl-md"
+                      className="w-60 h-full rounded-tl-md rounded-bl-md"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -319,7 +321,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -358,7 +360,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -400,7 +402,7 @@ const DetailPage = () => {
                 <div className="flex grid-cols-2">
                   <div className="text-center my-auto mx-6">
                     <img
-                      className="w-auto h-20 object-fill rounded-full my-2"
+                      className="w-auto h-20 rounded-full my-2"
                       src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
                       alt="/"
                     />
@@ -435,6 +437,13 @@ const DetailPage = () => {
             </div>
             <div className=" w-full text-center text-base font-normal">
               1 2 3
+            </div>
+            <div className="my-9">
+              <a href="#Navbar">
+                <div className="bg-blue-500 rounded-full w-fit p-2 ml-auto">
+                  <IoIosArrowUp className=" text-white " size={30} />
+                </div>
+              </a>
             </div>
           </div>
         </div>

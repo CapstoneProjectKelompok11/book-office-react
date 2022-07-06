@@ -8,7 +8,10 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <div className="flex w-full justify-between items-center h-[60px] px-3 py-3 text-white bg-[#4D89FF]">
+        <div
+          className="flex w-full justify-between items-center h-[60px] px-3 py-3 text-white bg-[#4D89FF]"
+          id="Navbar"
+        >
           <div className="flex items-center">
             <div className="w-28 h-10 ml-20">
               <NavLink to={`/`}>
