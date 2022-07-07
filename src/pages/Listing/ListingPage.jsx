@@ -7,28 +7,93 @@ import Loading from "../../components/Loading";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
 import { AiOutlineWifi, AiFillBank } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
+import axios from "axios";
 
 const ListingPage = () => {
   const [data, setData] = useState([]);
+  const [datas , setDatas] = useState([]);
   const { id } = useParams();
   const [error, setError] = useState("");
   const [img, setImg] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true);  
+  const [dataFilter, setDataFilter] = useState("")
+  const filtered = data.filter(session => {
+    if (dataFilter === "" || dataFilter === "All Cities") {
+      return data;
+    } else {
+        return session.complex.city.city_name === dataFilter;
+    }
+  });
   useEffect(() => {
     const getOffice = async () => {
-      const response = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10`
-      );
+      axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10").then((res) => {
+      setData(res.data.data);
+    })
+
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
-      setData(await response.json());
+      // setData(await response.json());
+      // console.log("data", data)
       setImg(await responseImg.blob());
       setLoading(false);
     };
     getOffice();
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city"
+  //     )
+  //     .then((res) => {
+  //       setDatas(res.data.data);
+  //       console.log("Datas", datas)
+  //     })
+  //     .catch((err) => {
+  //       setError(err);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+      axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city")
+      .then((res) => {
+          setDatas(res.data.data)
+          console.log(res.data.data);
+      })
+      .catch((err) => {
+          console.log(err);
+          console.log("Data gak ketemu")
+          // setError("Data gak ketemu")
+      })
+  }, []);
+
+  const handleChangeFilter = (e) => {
+    console.log("cek filter", e.target.value)
+    setDataFilter(e.target.value)
+  }
+
+  const [searchInput, setSearchInput] = useState("");
+  const inputHandler = (e) => {
+    const searchData = e.target.value.toLowerCase();
+    setSearchInput(searchData)
+  }
+  console.log("cek search", searchInput)
+
+  //ini buat search
+  // const filtered = data.filter((search) => {
+  //   if (searchInput === "" ) {
+  //     return search;
+  //   } else {
+  //     return (
+  //       search.kelompok.namaKelompok.toLowerCase().includes(searchInput) || 
+  //       search.kelompok.nik.includes(searchInput) ||
+  //       search.kelompok.user.noHp.includes(searchInput) ||
+  //       search.idBooking.toString().includes(searchInput)
+  //     )
+  //   }
+  // })
+
   console.log(data);
   return (
     <div>
@@ -69,13 +134,17 @@ const ListingPage = () => {
                       id="location"
                       name="location"
                       className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
+                      onChange={handleChangeFilter}
                     >
-                      <option value="jakarta barat">Jakarta Barat</option>
-                      <option value="jakarta pusat">Jakarta Pusat</option>
-                      <option value="jakarta selatan">Jakarta Selatan</option>
-                      <option value="jakarta timur">Jakarta Timur</option>
-                      <option value="jakarta utara">Jakarta Utara</option>
-                    </select>
+                        <option value="All Cities">All Cities</option>
+                        {datas.map((city) => (
+                        <option
+                        id={city.id} 
+                        value={city.city_name}>
+                        {city.city_name}
+                        </option>
+                        ))}
+                        </select>
                     <div>
                       <BiCaretDown
                         className="mr-4 text-black cursor-pointer"
@@ -112,7 +181,7 @@ const ListingPage = () => {
             </div>
             {/* -----------------Card------------------ */}
             <div className="max-w-[1040px] mx-auto mt-16">
-              {data.data.map((dataOffice) => {
+              {filtered.map((dataOffice) => {
                 return (
                   <>
                     <div className="w-full max-w-full py-5 ">
