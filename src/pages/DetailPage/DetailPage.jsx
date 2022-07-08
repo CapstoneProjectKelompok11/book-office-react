@@ -18,6 +18,7 @@ import PopUpBooking from "../../components/PopUpBooking";
 const DetailPage = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [datas, setDatas] = useState([]);
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +36,19 @@ const DetailPage = () => {
     };
     getOffice();
   }, []);
+
+
+  useEffect(() => {
+    axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/review")
+    .then((res) => {
+        setDatas(res.data.data)
+        console.log(res.data.data);
+    })
+    .catch((err) => {
+        console.log(err);
+        console.log("Data gak ketemu")
+    })
+}, []);
 
   return (
     <div>
