@@ -286,7 +286,7 @@ const Favorite = () => {
                   ? "text-xl font-medium px-8 py-2 text-white shadow-sm shadow-gray-500 bg-blue-500"
                   : "text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
               }
-              to={"./profile"}
+              // to={"./profile"}
               // className="text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
               onClick={_handleClickMyProfile}
             >
