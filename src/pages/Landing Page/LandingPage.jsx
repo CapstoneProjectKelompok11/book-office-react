@@ -19,7 +19,7 @@ const LandingPage = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10"
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99"
       )
       .then((res) => {
         setData(res.data.data);
@@ -70,29 +70,24 @@ const LandingPage = () => {
         <div className="justify-between pt-12">
           <div className="grid grid-cols-6 gap-4">
             {data.map((builds) => {
-              // console.log("builds", builds);
+              console.log("builds", builds.complex.complex_name);
               return (
-                <div className="border-2 ">
+                <div className="border-2 relative">
                   <div key={builds.id}>
                     {builds.images.slice(0, 1).map((tes) => {
                       // console.log("file name", tes.fileName);
                       return (
                         <>
                           <NavLink to={`/detail/${builds.id}`}>
-                            <div className="">
-                              <p className="z-10 absolute bottom-9 left-5 text-base font-bold text-white">
-                                Start at Rp 19.000.000
-                              </p>
-                              <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
-                                SCBD, Equity Tower
-                              </p>
-                              <img
-                                className="object-fill bg-slate-300"
-                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                alt="img"
-                                key={tes.id}
-                              />
-                            </div>
+                            <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                              {builds.complex.complex_name}
+                            </p>
+                            <img
+                              className="object-fill brightness-[.7]"
+                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                              alt="img"
+                              key={tes.id}
+                            />
                           </NavLink>
                         </>
                       );
