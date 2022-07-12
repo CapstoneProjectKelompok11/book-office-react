@@ -74,18 +74,25 @@ const LandingPage = () => {
               return (
                 <div className="border-2 ">
                   <div key={builds.id}>
-                    {/* <p> {builds.name}</p> */}
                     {builds.images.slice(0, 1).map((tes) => {
                       // console.log("file name", tes.fileName);
                       return (
                         <>
                           <NavLink to={`/detail/${builds.id}`}>
-                            <img
-                              className="object-fill "
-                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                              alt="img"
-                              key={tes.id}
-                            />
+                            <div className="">
+                              <p className="z-10 absolute bottom-9 left-5 text-base font-bold text-white">
+                                Start at Rp 19.000.000
+                              </p>
+                              <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                                SCBD, Equity Tower
+                              </p>
+                              <img
+                                className="object-fill bg-slate-300"
+                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                alt="img"
+                                key={tes.id}
+                              />
+                            </div>
                           </NavLink>
                         </>
                       );
@@ -150,71 +157,77 @@ const LandingPage = () => {
       {/* ---------------------End of About Us--------------- */}
       {/* ------Card SCBD Hotel------------- */}
       <div>
-        <p className="ml-20 mt-40 text-2xl font-semibold">Kuningan</p>
-        <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
-          {data.map((builds) => {
-            console.log(builds.complex);
-            return (
-              <>
-                {builds.complex.complex_name === "Kuningan"
-                  ? builds.images.slice(0, 1).map(
-                      (
-                        tes //slice buat limitasi data yg diambil (0 sampai 1 data)
-                      ) => {
-                        console.log(tes.filename);
-                        return (
-                          <>
-                            <NavLink to={`/detail/${builds.id}`}>
-                              <img
-                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                alt="img"
-                                className="h-full object-fill"
-                                key={tes.id}
-                              />
-                            </NavLink>
-                          </>
-                        );
-                      }
-                    )
-                  : null}
-              </>
-            );
-          })}
-        </div>
-        <div>
-          <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
-            More Office in Kuningan
-          </p>
-          <p className="ml-20 mt-24 text-2xl font-semibold">Tanah Abang</p>
-          <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5">
+        <p className="ml-20 mt-40 text-2xl font-semibold">SCBD</p>
+        <div className="mx-auto">
+          <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
             {data.map((builds) => {
+              console.log(builds.complex);
               return (
                 <>
-                  {builds.complex.complex_name === "Tanah Abang"
-                    ? builds.images.slice(0, 1).map(
-                        (
-                          tes //slice buat limitasi data yg diambil (0 sampai 1 data)
-                        ) => (
-                          <>
-                            <NavLink to={`/detail/${builds.id}`}>
-                              <img
-                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                alt="img"
-                                className="h-full object-fill"
-                                key={tes.id}
-                              />
-                            </NavLink>
-                          </>
+                  <div className="">
+                    {builds.complex.complex_name === "SCBD"
+                      ? builds.images.slice(0, 1).map(
+                          (
+                            tes //slice buat limitasi data yg diambil (0 sampai 1 data)
+                          ) => {
+                            console.log(tes.filename);
+                            return (
+                              <>
+                                <NavLink to={`/detail/${builds.id}`}>
+                                  <img
+                                    src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                    alt="img"
+                                    className="h-full object-fill"
+                                    key={tes.id}
+                                  />
+                                </NavLink>
+                              </>
+                            );
+                          }
                         )
-                      )
-                    : null}
+                      : null}
+                  </div>
                 </>
               );
             })}
           </div>
+        </div>
+        <div>
+          <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
+            <NavLink to={"/listing"}>More Office in SCBD</NavLink>
+          </p>
+          <p className="ml-20 mt-24 text-2xl font-semibold">Senayan City</p>
+          <div className="mx-auto">
+            <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
+              {data.map((builds) => {
+                return (
+                  <>
+                    {builds.complex.complex_name === "Senayan City"
+                      ? builds.images.slice(0, 1).map(
+                          (
+                            tes //slice buat limitasi data yg diambil (0 sampai 1 data)
+                          ) => (
+                            <>
+                              <NavLink to={`/detail/${builds.id}`}>
+                                <img
+                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                  alt="img"
+                                  className="h-full object-fill"
+                                  key={tes.id}
+                                />
+                              </NavLink>
+                            </>
+                          )
+                        )
+                      : null}
+                  </>
+                );
+              })}
+            </div>
+          </div>
           <div>
             <p className="text-xl ml-20 mt-5 font-semibold underline underline-offset-4">
-              More Office in Jakarta Pusat
+              <NavLink to={"/listing"}>More Office in Senayan City</NavLink>
             </p>
           </div>
         </div>
