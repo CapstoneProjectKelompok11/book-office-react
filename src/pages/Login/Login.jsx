@@ -178,13 +178,12 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-
-                  <div className="pt-2 text-center md:text-left">
-                    <p className="w-full text-sm text-black">
+                  <div className="mt-3 text-center md:text-left">
+                    <p className="w-full font-semibold text-lg text-black">
                       Doesn't have account?{" "}
                       <NavLink
                         to={"/Register"}
-                        className="text-center md:text-left text-black underline font-semibold text-xl"
+                        className="text-center md:text-left text-black underline font-semibold text-lg"
                       >
                         Sign up
                       </NavLink>
