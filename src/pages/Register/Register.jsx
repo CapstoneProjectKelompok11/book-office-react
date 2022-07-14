@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import img from "../../image/bglogin.png";
 import axiosInstance from "../../networks/api";
 import { useNavigate } from "react-router-dom";
 
@@ -154,7 +153,11 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-0">
           <div className="w-full">
-            <img className="w-full" src={img} alt="" />
+            <img
+              className="w-full"
+              src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/image/bglogin.png"
+              alt=""
+            />
           </div>
           <div className="w-full">
             <div className="text-center pb-10 md:pb-1 pt-44 text-xl italic font-semibold">

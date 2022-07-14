@@ -2,14 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BiSearchAlt } from "react-icons/bi";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { AiOutlineStar } from "react-icons/ai";
-import banner from "../../assets/Banner.png";
-import img1 from "../../assets/img-1.png";
-import img2 from "../../assets/img-2.png";
-import img3 from "../../assets/img-3.png";
-import img4 from "../../assets/img-4.png";
-import img5 from "../../assets/asas.png";
 import Footer from "../../components/Footer";
 import "./Style.css";
 import Slider from "react-slick";
@@ -76,14 +70,15 @@ const LandingPage = () => {
     prevArrow: <PrevArrow />,
   };
 
-
-  
-
   return (
     <div>
       {/* ----------------------Banner---------------- */}
       <div className="w-full h-[400px] relative ">
-        <img src={banner} alt="/" className="w-full h-full" />
+        <img
+          src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/Banner.png"
+          alt="/"
+          className="w-full h-full"
+        />
         <div className="absolute w-full h-full top-0 left-0 bg-black/60"></div>
         <div className="absolute w-full h-full top-0 flex flex-col justify-center text-center items-center text-white">
           <h1 className="mt-16 w-[675px] text-[40px] font-semibold ">
@@ -108,11 +103,9 @@ const LandingPage = () => {
           </div>
           <div>
             <Link to="/listing">
-            <button
-              className="bg-[#4D89FF] p-2 mt-8 rounded-md w-60"
-            >
-              Find All Office
-            </button>
+              <button className="bg-[#4D89FF] p-2 mt-8 rounded-md w-60">
+                Find All Office
+              </button>
             </Link>
           </div>
         </div>
@@ -215,25 +208,37 @@ const LandingPage = () => {
             <div className="grid grid-cols-7">
               <div className="flex items-center text-center">
                 <div>
-                  <img src={img1} alt="/" />
+                  <img
+                    src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/img-1.png"
+                    alt="/"
+                  />
                   <p className="py-1">Explore</p>
                 </div>
               </div>
               <div className="flex items-center text-center">
                 <div>
-                  <img src={img2} alt="/" />
+                  <img
+                    src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/img-2.png"
+                    alt="/"
+                  />
                   <p className="py-1">Variate</p>
                 </div>
               </div>
               <div className="flex items-center text-center">
                 <div>
-                  <img src={img3} alt="/" />
+                  <img
+                    src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/img-3.png"
+                    alt="/"
+                  />
                   <p className="py-1">Live Chat</p>
                 </div>
               </div>
               <div className="flex items-center text-center">
                 <div>
-                  <img src={img4} alt="/" />
+                  <img
+                    src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/img-4.png"
+                    alt="/"
+                  />
                   <p className="py-1">Deal</p>
                 </div>
               </div>
@@ -242,7 +247,7 @@ const LandingPage = () => {
           <div className="mt-[-40px] ">
             <img
               className="border border-black/30 rounded-lg shadow-2xl shadow-slate-500"
-              src={img5}
+              src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/asas.png"
               alt=""
             />
           </div>

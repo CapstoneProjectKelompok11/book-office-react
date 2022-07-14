@@ -4,8 +4,6 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import axiosInstance from "../../networks/api";
-import img2 from "../../image/Image.png";
-import img from "../../image/logologin.png";
 
 const Login = () => {
   const [dataForm, setDataForm] = useState({
@@ -113,12 +111,19 @@ const Login = () => {
           <div className="flex flex-col lg:flex-row">
             <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12">
               <div className="relative flex flex-col items-center justify-center w-full">
-                <img className="" src={img2} alt="" />
+                <img
+                  className=""
+                  src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/image/Image.png"
+                  alt=""
+                />
               </div>
             </div>
             <div className="w-full bg-white lg:w-6/12 xl:w-6/12">
               <div className="w-96 m-auto pt-16">
-                <img src={img} alt="" />
+                <img
+                  src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/image/logologin.png"
+                  alt=""
+                />
               </div>
               <div className="text-center pt-10 text-2xl italic font-semibold">
                 <p>Welcome to SewaKantor.com</p>
