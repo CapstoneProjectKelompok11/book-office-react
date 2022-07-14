@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
+import PopUp from "../../components/PopUp";
 
 const MyProfile = () => {
   return (
@@ -258,34 +259,17 @@ const MyFavorite = () => {
 
 const Profile = () => {
   const [tab, setTab] = useState("My Profile");
-
-  const _handleClickMyProfile = (e) => {
-    e.preventDefault();
-    setTab("My Profile");
-  };
-  const _handleClickMyBooking = (e) => {
-    e.preventDefault();
-    setTab("My Booking");
-  };
-  const _handleClickMyFavourite = (e) => {
-    e.preventDefault();
-    setTab("My Favorite");
-  };
-
-  console.log(tab);
   return (
     <div>
       <div className="max-w-[864px] conatiner mx-auto px-4">
         <div className="grid grid-cols-3 py-4 gap-3 mt-10">
-          {/* style={ { display: isLoggedIn ? 'block' : 'none' } }   */}
           <button
             className={
               tab === "My Profile"
                 ? "text-xl font-medium px-8 py-2 text-white shadow-sm shadow-gray-500 bg-blue-500"
                 : "text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
             }
-            // className="text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
-            onClick={_handleClickMyProfile}
+            onClick={() => setTab("My Profile")}
           >
             My Profile
           </button>
@@ -295,7 +279,7 @@ const Profile = () => {
                 ? "text-xl font-medium px-8 py-2 text-white shadow-sm shadow-gray-500 bg-blue-500"
                 : "text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
             }
-            onClick={_handleClickMyBooking}
+            onClick={() => setTab("My Booking")}
           >
             My Booking
           </button>
@@ -305,7 +289,7 @@ const Profile = () => {
                 ? "text-xl font-medium px-8 py-2 text-white shadow-sm shadow-gray-500 bg-blue-500"
                 : "text-xl font-medium px-8 py-2 text-black border-2 shadow-sm shadow-gray-500"
             }
-            onClick={_handleClickMyFavourite}
+            onClick={() => setTab("My Favorite")}
           >
             My Favorite
           </button>
@@ -313,9 +297,6 @@ const Profile = () => {
         {tab === "My Profile" ? <MyProfile /> : null}
         {tab === "My Booking" ? <MyBooking /> : null}
         {tab === "My Favorite" ? <MyFavorite /> : null}
-        {/* <MyProfile /> */}
-        {/* <MyBooking /> */}
-        {/* <MyFavorite /> */}
       </div>
     </div>
   );

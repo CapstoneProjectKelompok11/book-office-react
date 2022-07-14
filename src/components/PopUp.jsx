@@ -3,9 +3,12 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BiCaretDown } from "react-icons/bi";
 import success from "../assets/book-success.png";
 import { date } from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
+import Profile from "../pages/Profile/Profile";
+import { NavLink } from "react-router-dom";
 
 export default function PopUp({ show, onClose }) {
   const [bookSuccess, setBookSuccess] = useState(false);
+  const [tab, setTab] = useState("My Booking");
   if (!show) return null;
 
   const BookSuccess = () => {
@@ -53,15 +56,22 @@ export default function PopUp({ show, onClose }) {
                   <div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center my-10">
-                        <button className="text-base font-medium py-2 text-white bg-blue-500 shadow-sm rounded-lg w-full h-full">
-                          Message Us
-                        </button>
+                        <NavLink to={"/profile"}>
+                          <button className="text-base font-medium py-2 text-white bg-blue-500 shadow-sm rounded-lg w-full h-full">
+                            Message Us
+                          </button>
+                        </NavLink>
                       </div>
                       <div className="text-center my-10">
-                        <button className="text-base font-medium py-2 text-blue-500 bg-white shadow-sm rounded-lg w-full border-2 border-blue-500">
-                          Your Booking Detail
-                        </button>
+                        <NavLink to={"/profile"}>
+                          <button className="text-base font-medium py-2 text-blue-500 bg-white shadow-sm rounded-lg w-full border-2 border-blue-500">
+                            Your Booking Detail
+                          </button>
+                        </NavLink>
                       </div>
+                    </div>
+                    <div className="hidden">
+                      <Profile go={tab} />
                     </div>
                   </div>
                 </div>
