@@ -12,6 +12,7 @@ import axios from "axios";
 const ListingPage = () => {
   const [data, setData] = useState([]);
   const [datas, setDatas] = useState([]);
+  const [dataComplex, setDataComplex] = useState([]);
   const { id } = useParams();
   const [error, setError] = useState("");
   const [img, setImg] = useState([]);
@@ -21,9 +22,30 @@ const ListingPage = () => {
     if (dataFilter === "" || dataFilter === "All Cities") {
       return data;
     } else {
-      return session.complex.city.city_name === dataFilter;
+      return(
+         session.complex.city.city_name === dataFilter ||
+          session.complex.complex_name === dataFilter     
+          )  
     }
   });
+
+  const [searchInput, setSearchInput] = useState("");
+  const inputHandler = (e) => {
+    const searchData = e.target.value.toLowerCase();
+    setSearchInput(searchData);
+  };
+  console.log("cek search", searchInput);
+  const filter = data.filter((session) => {
+    if (searchInput === "" ) {
+      return session;
+    } else {
+      return (
+        session.name.toLowerCase().includes(searchInput) 
+        )
+      }
+    });
+    const filters = (searchInput === "" ) ? filtered:filter
+
   useEffect(() => {
     const getOffice = async () => {
       axios
@@ -35,27 +57,13 @@ const ListingPage = () => {
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
-      // setData(await response.json());
-      // console.log("data", data)
+
       setImg(await responseImg.blob());
       setLoading(false);
     };
     getOffice();
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city"
-  //     )
-  //     .then((res) => {
-  //       setDatas(res.data.data);
-  //       console.log("Datas", datas)
-  //     })
-  //     .catch((err) => {
-  //       setError(err);
-  //     });
-  // }, []);
 
   useEffect(() => {
     axios
@@ -71,32 +79,32 @@ const ListingPage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/complex")
+      .then((res) => {
+        setDataComplex(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("Data gak ketemu");
+        // setError("Data gak ketemu")
+      });
+  }, []);
+
+  
+
   const handleChangeFilter = (e) => {
     console.log("cek filter", e.target.value);
     setDataFilter(e.target.value);
   };
 
-  const [searchInput, setSearchInput] = useState("");
-  const inputHandler = (e) => {
-    const searchData = e.target.value.toLowerCase();
-    setSearchInput(searchData);
+  const handleChangeFiltered = (e) => {
+    console.log("cek filtered", e.target.value);
+    setDataFilter(e.target.value);
   };
-  console.log("cek search", searchInput);
-
-  //ini buat search
-  // const filtered = data.filter((search) => {
-  //   if (searchInput === "" ) {
-  //     return search;
-  //   } else {
-  //     return (
-  //       search.kelompok.namaKelompok.toLowerCase().includes(searchInput) ||
-  //       search.kelompok.nik.includes(searchInput) ||
-  //       search.kelompok.user.noHp.includes(searchInput) ||
-  //       search.idBooking.toString().includes(searchInput)
-  //     )
-  //   }
-  // })
-
+  
   console.log(data);
   return (
     <div>
@@ -119,6 +127,7 @@ const ListingPage = () => {
                       className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
                       type="text"
                       placeholder="Search a place"
+                      onChange={inputHandler}
                     />
                     <div>
                       <BiSearchAlt
@@ -163,12 +172,14 @@ const ListingPage = () => {
                       id="location"
                       name="location"
                       className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
+                      onChange={handleChangeFiltered}
                     >
-                      <option value="jakarta barat">Jakarta Barat</option>
-                      <option value="jakarta pusat">Jakarta Pusat</option>
-                      <option value="jakarta selatan">Jakarta Selatan</option>
-                      <option value="jakarta timur">Jakarta Timur</option>
-                      <option value="jakarta utara">Jakarta Utara</option>
+                      <option value="All Complex">All Complex</option>
+                      {dataComplex.map((city) => (
+                        <option id={city.id} value={city.complex_name}>
+                          {city.complex_name}
+                        </option>
+                      ))}
                     </select>
                     <div>
                       <BiCaretDown
@@ -182,7 +193,8 @@ const ListingPage = () => {
             </div>
             {/* -----------------Card------------------ */}
             <div className="max-w-[1040px] mx-auto mt-16">
-              {filtered.map((dataOffice) => {
+
+              {filters.map((dataOffice) => {
                 return (
                   <>
                     <div className="w-full max-w-full py-5 ">
