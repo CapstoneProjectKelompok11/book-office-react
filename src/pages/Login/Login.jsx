@@ -111,7 +111,7 @@ const Login = () => {
       <div className="mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col lg:flex-row">
-            <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
+            <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12">
               <div className="relative flex flex-col items-center justify-center w-full">
                 <img className="" src={img2} alt="" />
               </div>
