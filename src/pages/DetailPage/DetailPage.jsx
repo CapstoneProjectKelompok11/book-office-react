@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import date from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
@@ -10,8 +11,10 @@ import {
   AiFillBank,
   AiFillStar,
   AiOutlineStar,
+  AiOutlineCloseCircle,
 } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
+import { BiCaretDown } from "react-icons/bi";
 import Loading from "../../components/Loading";
 import PopUpBooking from "../../components/PopUpBooking";
 
@@ -21,6 +24,7 @@ const DetailPage = () => {
   const [datas, setDatas] = useState([]);
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isPopUpShow, setIsPopUpShow] = useState(false);
 
   useEffect(() => {
     const getOffice = async () => {
@@ -37,18 +41,25 @@ const DetailPage = () => {
     getOffice();
   }, []);
 
-
   useEffect(() => {
-    axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/review")
-    .then((res) => {
-        setDatas(res.data.data)
+    axios
+      .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/review")
+      .then((res) => {
+        setDatas(res.data.data);
         console.log(res.data.data);
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
-        console.log("Data gak ketemu")
-    })
-}, []);
+        console.log("Data gak ketemu");
+      });
+  }, []);
+
+  const handlePopUp = () => {
+    setIsPopUpShow(true);
+  };
+  const handleClose = () => {
+    setIsPopUpShow(false);
+  };
 
   return (
     <div>
@@ -170,12 +181,16 @@ const DetailPage = () => {
                     </div>
                   </div>
                   <div className="mx-auto my-auto">
-                    <button className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg">
+                    <button
+                      className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
+                      onClick={handlePopUp}
+                    >
                       Book
                     </button>
                   </div>
                 </div>
               </div>
+              <PopUpBooking />
               <div className=" w-full max-w-full py-5 ">
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
@@ -202,7 +217,10 @@ const DetailPage = () => {
                     </div>
                   </div>
                   <div className="mx-auto my-auto">
-                    <button className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg">
+                    <button
+                      className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
+                      onClick={handlePopUp}
+                    >
                       Book
                     </button>
                   </div>
