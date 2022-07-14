@@ -263,41 +263,36 @@ const LandingPage = () => {
               // console.log(builds);
               return (
                 <>
-                  <div className="">
-                    {builds.complex.complex_name === "SCBD" &&
-                    builds.id !== "25" &&
-                    "27"
-                      ? builds.images.slice(0, 1).map((tes) => {
-                          return (
-                            <>
-                              <div className="relative">
-                                <NavLink to={`/detail/${builds.id}`}>
-                                  <img
-                                    src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                                    alt="img"
-                                    className="h-full object-fill rounded-lg brightness-[.7]"
-                                    key={tes.id}
-                                  />{" "}
-                                  <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
-                                    <AiOutlineStar className="mr-1" size={20} />
-                                    {builds.rating} / 5.0
+                  {builds.complex.complex_name === "SCBD"
+                    ? builds.images.slice(0, 1).map((tes) => {
+                        return (
+                          <>
+                            <div className="relative">
+                              <NavLink to={`/detail/${builds.id}`}>
+                                <img
+                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                  alt="img"
+                                  className="h-full object-fill rounded-lg brightness-[.7]"
+                                  key={tes.id}
+                                />{" "}
+                                <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
+                                  <AiOutlineStar className="mr-1" size={20} />
+                                  {builds.rating} / 5
+                                </p>
+                                <div className="border border-black/30 rounded-lg shadow-sm shadow-slate-500 p-3 min-h-[80px]">
+                                  <p className="text-sm mb-1 my-auto">
+                                    {builds.complex.complex_name}, {builds.name}
                                   </p>
-                                  <div className="border border-black/30 rounded-lg shadow-sm shadow-slate-500 p-3 min-h-[80px]">
-                                    <p className="text-sm mb-1 my-auto">
-                                      {builds.complex.complex_name},{" "}
-                                      {builds.name}
-                                    </p>
-                                    <p className="text-xs my-auto">
-                                      {builds.address}
-                                    </p>
-                                  </div>
-                                </NavLink>
-                              </div>
-                            </>
-                          );
-                        })
-                      : null}
-                  </div>
+                                  <p className="text-xs my-auto">
+                                    {builds.address}
+                                  </p>
+                                </div>
+                              </NavLink>
+                            </div>
+                          </>
+                        );
+                      })
+                    : null}
                 </>
               );
             })}
