@@ -9,7 +9,6 @@ import "./Style.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import Listing from "./Listing";
 
 const LandingPage = () => {
   const [data, setData] = useState([]);

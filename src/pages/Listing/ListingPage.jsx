@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import ListTable from "../ListTable";
 import { BiCaretDown, BiSearchAlt } from "react-icons/bi";
 import Loading from "../../components/Loading";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";

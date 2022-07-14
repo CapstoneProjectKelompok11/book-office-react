@@ -26,20 +26,20 @@ const DetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [isPopUpShow, setIsPopUpShow] = useState(false);
 
-  useEffect(() => {
-    const getOffice = async () => {
-      const response = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
-      );
-      const responseImg = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
-      );
-      setData(await response.json());
-      setImg(await responseImg.blob());
-      setLoading(false);
-    };
-    getOffice();
-  }, []);
+  // useEffect(() => {
+  //   const getOffice = async () => {
+  //     const response = await fetch(
+  //       `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
+  //     );
+  //     const responseImg = await fetch(
+  //       `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
+  //     );
+  //     setData(await response.json());
+  //     setImg(await responseImg.blob());
+  //     setLoading(false);
+  //   };
+  //   getOffice();
+  // }, []);
 
   useEffect(() => {
     axios
