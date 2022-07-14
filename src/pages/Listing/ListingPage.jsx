@@ -11,24 +11,26 @@ import axios from "axios";
 
 const ListingPage = () => {
   const [data, setData] = useState([]);
-  const [datas , setDatas] = useState([]);
+  const [datas, setDatas] = useState([]);
   const { id } = useParams();
   const [error, setError] = useState("");
   const [img, setImg] = useState([]);
-  const [loading, setLoading] = useState(true);  
-  const [dataFilter, setDataFilter] = useState("")
-  const filtered = data.filter(session => {
+  const [loading, setLoading] = useState(true);
+  const [dataFilter, setDataFilter] = useState("");
+  const filtered = data.filter((session) => {
     if (dataFilter === "" || dataFilter === "All Cities") {
       return data;
     } else {
-        return session.complex.city.city_name === dataFilter;
+      return session.complex.city.city_name === dataFilter;
     }
   });
   useEffect(() => {
     const getOffice = async () => {
-      axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings").then((res) => {
-      setData(res.data.data);
-    })
+      axios
+        .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings")
+        .then((res) => {
+          setData(res.data.data);
+        });
 
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
@@ -56,29 +58,30 @@ const ListingPage = () => {
   // }, []);
 
   useEffect(() => {
-      axios.get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city")
+    axios
+      .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city")
       .then((res) => {
-          setDatas(res.data.data)
-          console.log(res.data.data);
+        setDatas(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
-          console.log(err);
-          console.log("Data gak ketemu")
-          // setError("Data gak ketemu")
-      })
+        console.log(err);
+        console.log("Data gak ketemu");
+        // setError("Data gak ketemu")
+      });
   }, []);
 
   const handleChangeFilter = (e) => {
-    console.log("cek filter", e.target.value)
-    setDataFilter(e.target.value)
-  }
+    console.log("cek filter", e.target.value);
+    setDataFilter(e.target.value);
+  };
 
   const [searchInput, setSearchInput] = useState("");
   const inputHandler = (e) => {
     const searchData = e.target.value.toLowerCase();
-    setSearchInput(searchData)
-  }
-  console.log("cek search", searchInput)
+    setSearchInput(searchData);
+  };
+  console.log("cek search", searchInput);
 
   //ini buat search
   // const filtered = data.filter((search) => {
@@ -86,7 +89,7 @@ const ListingPage = () => {
   //     return search;
   //   } else {
   //     return (
-  //       search.kelompok.namaKelompok.toLowerCase().includes(searchInput) || 
+  //       search.kelompok.namaKelompok.toLowerCase().includes(searchInput) ||
   //       search.kelompok.nik.includes(searchInput) ||
   //       search.kelompok.user.noHp.includes(searchInput) ||
   //       search.idBooking.toString().includes(searchInput)
@@ -136,15 +139,13 @@ const ListingPage = () => {
                       className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
                       onChange={handleChangeFilter}
                     >
-                        <option value="All Cities">All Cities</option>
-                        {datas.map((city) => (
-                        <option
-                        id={city.id} 
-                        value={city.city_name}>
-                        {city.city_name}
+                      <option value="All Cities">All Cities</option>
+                      {datas.map((city) => (
+                        <option id={city.id} value={city.city_name}>
+                          {city.city_name}
                         </option>
-                        ))}
-                        </select>
+                      ))}
+                    </select>
                     <div>
                       <BiCaretDown
                         className="mr-4 text-black cursor-pointer"
