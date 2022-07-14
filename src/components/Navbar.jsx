@@ -2,7 +2,6 @@ import React from "react";
 import { AiOutlineInbox, AiOutlineHeart } from "react-icons/ai";
 import { VscAccount } from "react-icons/vsc";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
@@ -15,7 +14,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <div className="w-28 h-10 ml-20">
               <NavLink to={`/`}>
-                <img src={logo} alt="" />{" "}
+                <img
+                  src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/logo.png"
+                  alt=""
+                />
               </NavLink>
             </div>
           </div>

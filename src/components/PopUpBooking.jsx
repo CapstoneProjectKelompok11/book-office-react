@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BiCaretDown } from "react-icons/bi";
-import date from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
+import { date } from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
 
 const PopUpBooking = () => {
   return (
