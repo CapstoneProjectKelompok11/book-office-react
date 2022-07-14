@@ -27,9 +27,7 @@ const ListingPage = () => {
   useEffect(() => {
     const getOffice = async () => {
       axios
-        .get(
-          "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=10"
-        )
+        .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings")
         .then((res) => {
           setData(res.data.data);
         });
