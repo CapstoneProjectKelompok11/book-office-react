@@ -27,6 +27,7 @@ const DetailPage = () => {
   const [isPopUpShow, setIsPopUpShow] = useState(false);
 
   useEffect(() => {
+    //Awal2 dia loading soalnya state loading true
     const getOffice = async () => {
       const response = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
@@ -34,9 +35,9 @@ const DetailPage = () => {
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
-      setData(await response.json());
-      setImg(await responseImg.blob());
-      setLoading(false);
+      setData(await response.json()); // trus dia nge get data ini
+      setImg(await responseImg.blob()); // lalu dia nge get data blob image, gunanya biar loading tetep jalan selama get data gambar. Jadi gak nunggu gambar nya blank
+      setLoading(false); // terus ketika dua dua nya udah di get, loading jadi false, animasi loading kelar
     };
     getOffice();
   }, []);
