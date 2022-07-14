@@ -90,7 +90,7 @@ const Login = () => {
           setUserExist("exists");
           setAllValid("valid");
           setLoading(false);
-          console.log("response", response)
+          console.log("response", response);
           navigate("/Home");
           Cookies.set("token", response.data.data.token);
         })
@@ -117,7 +117,7 @@ const Login = () => {
               </div>
             </div>
             <div className="w-full bg-white lg:w-6/12 xl:w-6/12">
-              <div className="m-48 w-96 m-auto pt-16">
+              <div className="w-96 m-auto pt-16">
                 <img src={img} alt="" />
               </div>
               <div className="text-center pt-10 text-2xl italic font-semibold">
@@ -135,7 +135,7 @@ const Login = () => {
                     </label>
                     <input
                       type="email"
-                      className="border-2 m-auto border-black w-96 h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
+                      className="border-2 m-auto border-black h-10 pt-2.5 block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-white rounded-lg"
                       placeholder="Enter Your Email"
                       onChange={(e) => {
                         handleEmail(e);
@@ -169,19 +169,19 @@ const Login = () => {
                       </svg>
                     </div>
                   </div>
-                 
+
                   <div className="pt-5 text-center md:text-left">
                     <button
-                    type="submit"
-                      className="w-96 h-10 inline-block w-full px-3 py-1 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
+                      type="submit"
+                      className="h-10 inline-block w-full px-3 py-1 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease"
                     >
                       Login
                     </button>
                   </div>
-                
+
                   <div className="pt-2 text-center md:text-left">
-                    <p className="w-full text-sm text-black text-xl">
-                      Doesn’t have account?{" "}
+                    <p className="w-full text-sm text-black">
+                      Doesn't have account?{" "}
                       <a
                         href="/register"
                         className="text-center md:text-left text-black underline font-semibold text-xl"
