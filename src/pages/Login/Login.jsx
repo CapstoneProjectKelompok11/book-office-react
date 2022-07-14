@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import axiosInstance from "../../networks/api";
 import img2 from "../../image/Image.png";
 import img from "../../image/logologin.png";
@@ -182,12 +182,12 @@ const Login = () => {
                   <div className="pt-2 text-center md:text-left">
                     <p className="w-full text-sm text-black">
                       Doesn't have account?{" "}
-                      <a
-                        href="/register"
+                      <NavLink
+                        to={"/Register"}
                         className="text-center md:text-left text-black underline font-semibold text-xl"
                       >
                         Sign up
-                      </a>
+                      </NavLink>
                     </p>
                   </div>
                 </div>
