@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BiSearchAlt } from "react-icons/bi";
+import { Link } from "react-router-dom"
 import { AiOutlineStar } from "react-icons/ai";
 import banner from "../../assets/Banner.png";
 import img1 from "../../assets/img-1.png";
@@ -75,6 +76,9 @@ const LandingPage = () => {
     prevArrow: <PrevArrow />,
   };
 
+
+  
+
   return (
     <div>
       {/* ----------------------Banner---------------- */}
@@ -103,12 +107,13 @@ const LandingPage = () => {
             </form>
           </div>
           <div>
+            <Link to="/listing">
             <button
-              href="/listing"
               className="bg-[#4D89FF] p-2 mt-8 rounded-md w-60"
             >
               Find All Office
             </button>
+            </Link>
           </div>
         </div>
       </div>
