@@ -10,10 +10,12 @@ import img4 from "../../assets/img-4.png";
 import img5 from "../../assets/asas.png";
 import Footer from "../../components/Footer";
 import "./Style.css";
+
 // import Listing from "./Listing";
 
 const LandingPage = () => {
   const [data, setData] = useState([]);
+  const [dataImg, setDataImg] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -70,34 +72,44 @@ const LandingPage = () => {
         <div className="justify-between pt-12">
           <div className="grid grid-cols-6 gap-4">
             {data.map((builds) => {
-              console.log("builds", builds.complex.complex_name);
+              // {
+              //   setDataImg((p) => [...dataImg, "new value"]);
+              // }
+              // {
+              //   console.log(dataImg);
+              // }
+              // console.log("builds", builds.complex.complex_name);
               return (
-                <div className="border-2 relative">
-                  <div key={builds.id}>
-                    {builds.images.slice(0, 1).map((tes) => {
-                      // console.log("file name", tes.fileName);
-                      return (
-                        <>
-                          <NavLink to={`/detail/${builds.id}`}>
-                            <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
-                              {builds.complex.complex_name}
-                            </p>
-                            <img
-                              className="object-fill brightness-[.7]"
-                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                              alt="img"
-                              key={tes.id}
-                            />
-                          </NavLink>
-                        </>
-                      );
-                    })}
+                <>
+                  <div className="border-2 relative">
+                    <div key={builds.id}>
+                      {builds.images.slice(0, 1).map((tes) => {
+                        // console.log("file name", tes.fileName);
+
+                        return (
+                          <>
+                            <NavLink to={`/detail/${builds.id}`}>
+                              <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                                {builds.complex.complex_name}
+                              </p>
+                              <img
+                                className="object-fill brightness-[.7]"
+                                src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                alt="img"
+                                key={tes.id}
+                              />
+                            </NavLink>
+                          </>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                </>
               );
             })}
           </div>
         </div>
+
         <div className="text-center p-4">
           <NavLink to="/listing">More List</NavLink>
         </div>
@@ -156,7 +168,7 @@ const LandingPage = () => {
         <div className="mx-auto">
           <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
             {data.map((builds) => {
-              console.log(builds.complex);
+              // console.log(builds.complex);
               return (
                 <>
                   <div className="">
@@ -165,7 +177,7 @@ const LandingPage = () => {
                           (
                             tes //slice buat limitasi data yg diambil (0 sampai 1 data)
                           ) => {
-                            console.log(tes.filename);
+                            // console.log(tes.filename);
                             return (
                               <>
                                 <NavLink to={`/detail/${builds.id}`}>
