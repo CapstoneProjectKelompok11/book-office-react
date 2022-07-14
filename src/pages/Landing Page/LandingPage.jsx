@@ -260,11 +260,13 @@ const LandingPage = () => {
         <div className="mx-auto">
           <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
             {data.map((builds) => {
-              console.log(builds);
+              // console.log(builds);
               return (
                 <>
                   <div className="">
-                    {builds.complex.complex_name === "SCBD"
+                    {builds.complex.complex_name === "SCBD" &&
+                    builds.id !== "25" &&
+                    "27"
                       ? builds.images.slice(0, 1).map((tes) => {
                           return (
                             <>

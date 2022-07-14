@@ -16,7 +16,7 @@ import {
 import { MdRestaurantMenu } from "react-icons/md";
 import { BiCaretDown } from "react-icons/bi";
 import Loading from "../../components/Loading";
-import PopUpBooking from "../../components/PopUpBooking";
+import PopUp from "../../components/PopUp";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -54,13 +54,6 @@ const DetailPage = () => {
       });
   }, []);
 
-  const handlePopUp = () => {
-    setIsPopUpShow(true);
-  };
-  const handleClose = () => {
-    setIsPopUpShow(false);
-  };
-
   return (
     <div>
       {loading ? (
@@ -68,7 +61,7 @@ const DetailPage = () => {
           <Loading />
         </div>
       ) : (
-        <div>
+        <div className="z-[-1]">
           <div className="max-w-[1240px] mx-auto">
             <div className="p-5 text-center text-base font-normal">
               <p>
@@ -183,14 +176,14 @@ const DetailPage = () => {
                   <div className="mx-auto my-auto">
                     <button
                       className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                      onClick={handlePopUp}
+                      onClick={() => setIsPopUpShow(true)}
                     >
                       Book
                     </button>
                   </div>
                 </div>
               </div>
-              <PopUpBooking />
+
               <div className=" w-full max-w-full py-5 ">
                 <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
                   <div>
@@ -219,7 +212,7 @@ const DetailPage = () => {
                   <div className="mx-auto my-auto">
                     <button
                       className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                      onClick={handlePopUp}
+                      onClick={() => setIsPopUpShow(true)}
                     >
                       Book
                     </button>
@@ -480,6 +473,7 @@ const DetailPage = () => {
           </div>
         </div>
       )}
+      <PopUp show={isPopUpShow} onClose={() => setIsPopUpShow(false)} />
     </div>
   );
 };
