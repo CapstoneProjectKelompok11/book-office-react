@@ -91,7 +91,7 @@ const Login = () => {
           setAllValid("valid");
           setLoading(false);
           console.log("response", response)
-          navigate("/");
+          navigate("/Home");
           Cookies.set("token", response.data.data.token);
         })
         .catch((error) => {
