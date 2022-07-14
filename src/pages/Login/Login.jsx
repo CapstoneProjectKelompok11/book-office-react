@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import axiosInstance from "../../networks/api";
 import img2 from "../../image/Image.png";
 import img from "../../image/logologin.png";
@@ -111,7 +111,7 @@ const Login = () => {
       <div className="mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col lg:flex-row">
-            <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12 bg-gradient-to-r from-white via-white to-gray-100 ">
+            <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12">
               <div className="relative flex flex-col items-center justify-center w-full">
                 <img className="" src={img2} alt="" />
               </div>
@@ -178,16 +178,15 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-
-                  <div className="pt-2 text-center md:text-left">
-                    <p className="w-full text-sm text-black">
+                  <div className="mt-3 text-center md:text-left">
+                    <p className="w-full font-semibold text-lg text-black">
                       Doesn't have account?{" "}
-                      <a
-                        href="/register"
-                        className="text-center md:text-left text-black underline font-semibold text-xl"
+                      <NavLink
+                        to={"/Register"}
+                        className="text-center md:text-left text-black underline font-semibold text-lg"
                       >
                         Sign up
-                      </a>
+                      </NavLink>
                     </p>
                   </div>
                 </div>

@@ -268,7 +268,7 @@ const LandingPage = () => {
                                   <img
                                     src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                     alt="img"
-                                    className="h-full object-fill rounded-lg"
+                                    className="h-full object-fill rounded-lg brightness-[.7]"
                                     key={tes.id}
                                   />{" "}
                                   <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
@@ -314,7 +314,7 @@ const LandingPage = () => {
                                 <img
                                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                   alt="img"
-                                  className="h-full object-fill"
+                                  className="h-full object-fill brightness-[.7]"
                                   key={tes.id}
                                 />
                                 <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
