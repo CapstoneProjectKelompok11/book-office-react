@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BiSearchAlt } from "react-icons/bi";
+import { AiOutlineStar } from "react-icons/ai";
 import banner from "../../assets/Banner.png";
 import img1 from "../../assets/img-1.png";
 import img2 from "../../assets/img-2.png";
@@ -10,6 +11,9 @@ import img4 from "../../assets/img-4.png";
 import img5 from "../../assets/asas.png";
 import Footer from "../../components/Footer";
 import "./Style.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // import Listing from "./Listing";
 
 const LandingPage = () => {
@@ -28,6 +32,47 @@ const LandingPage = () => {
         setError(err);
       });
   }, []);
+
+  const NextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          background: "blue",
+          margin: "10px 10px 10px 10px",
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+  const PrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "block",
+          background: "blue",
+          margin: "10px 10px 10px 10px",
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
 
   return (
     <div>
@@ -68,39 +113,84 @@ const LandingPage = () => {
       <div className="mx-auto py-16 px-4 text-center">
         <h2 className="font-medium">Top Places in Jakarta</h2>
         <div className="justify-between pt-12">
-          <div className="grid grid-cols-6 gap-4">
-            {data.map((builds) => {
-              console.log("builds", builds.complex.complex_name);
-              return (
-                <div className="border-2 relative">
-                  <div key={builds.id}>
-                    {builds.images.slice(0, 1).map((tes) => {
-                      // console.log("file name", tes.fileName);
-                      return (
-                        <>
-                          <NavLink to={`/detail/${builds.id}`}>
-                            <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
-                              {builds.complex.complex_name}
-                            </p>
-                            <img
-                              className="object-fill brightness-[.7]"
-                              src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
-                              alt="img"
-                              key={tes.id}
-                            />
-                          </NavLink>
-                        </>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <Slider {...settings}>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/5cf15fed-fd5a-425a-84b2-4059454bd71e.jpg`}
+                  alt="img"
+                />
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  SCBD
+                </p>
+              </NavLink>
+            </div>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  Senayan City
+                </p>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/f86d58ee-aea6-4588-9de6-8fcb86c9444e.jpg`}
+                  alt="img"
+                />
+              </NavLink>
+            </div>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  Tanah Abang
+                </p>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/c7326799-84da-4ee0-84ef-78e222763f8f.jpg`}
+                  alt="img"
+                />
+              </NavLink>
+            </div>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  SCBD
+                </p>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/81ee853c-a51c-4734-887e-a74615d4e0ca.jpg`}
+                  alt="img"
+                />
+              </NavLink>
+            </div>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  Senayan City
+                </p>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d2e913e3-3dc3-427f-8080-c408e5f14537.jpg`}
+                  alt="img"
+                />
+              </NavLink>
+            </div>
+            <div className="border-2 relative">
+              <NavLink to={`/detail`}>
+                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                  Tanah Abang
+                </p>
+                <img
+                  className="object-fill brightness-[.7]"
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/0614c676-f92d-4707-a66e-b83a39e529ad.jpg`}
+                  alt="img"
+                />
+              </NavLink>
+            </div>
+          </Slider>
         </div>
-        <div className="text-center p-4">
-          <NavLink to="/listing">More List</NavLink>
-        </div>
+      </div>
+      <div className="text-center p-4">
+        <NavLink to="/listing">More List</NavLink>
       </div>
       {/* -----------------End of Top Places-------------------- */}
       <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
@@ -142,7 +232,7 @@ const LandingPage = () => {
           </div>
           <div className="mt-[-40px] ">
             <img
-              className="border border-black/30 rounded-lg shadow-2xl"
+              className="border border-black/30 rounded-lg shadow-2xl shadow-slate-500"
               src={img5}
               alt=""
             />
@@ -156,30 +246,40 @@ const LandingPage = () => {
         <div className="mx-auto">
           <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
             {data.map((builds) => {
-              console.log(builds.complex);
+              console.log(builds);
               return (
                 <>
                   <div className="">
                     {builds.complex.complex_name === "SCBD"
-                      ? builds.images.slice(0, 1).map(
-                          (
-                            tes //slice buat limitasi data yg diambil (0 sampai 1 data)
-                          ) => {
-                            console.log(tes.filename);
-                            return (
-                              <>
+                      ? builds.images.slice(0, 1).map((tes) => {
+                          return (
+                            <>
+                              <div className="relative">
                                 <NavLink to={`/detail/${builds.id}`}>
                                   <img
                                     src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                     alt="img"
-                                    className="h-full object-fill"
+                                    className="h-full object-fill rounded-lg"
                                     key={tes.id}
-                                  />
+                                  />{" "}
+                                  <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
+                                    <AiOutlineStar className="mr-1" size={20} />
+                                    {builds.rating} / 5.0
+                                  </p>
+                                  <div className="border border-black/30 rounded-lg shadow-sm shadow-slate-500 p-3 min-h-[80px]">
+                                    <p className="text-sm mb-1 my-auto">
+                                      {builds.complex.complex_name},{" "}
+                                      {builds.name}
+                                    </p>
+                                    <p className="text-xs my-auto">
+                                      {builds.address}
+                                    </p>
+                                  </div>
                                 </NavLink>
-                              </>
-                            );
-                          }
-                        )
+                              </div>
+                            </>
+                          );
+                        })
                       : null}
                   </div>
                 </>
@@ -198,11 +298,9 @@ const LandingPage = () => {
                 return (
                   <>
                     {builds.complex.complex_name === "Senayan City"
-                      ? builds.images.slice(0, 1).map(
-                          (
-                            tes //slice buat limitasi data yg diambil (0 sampai 1 data)
-                          ) => (
-                            <>
+                      ? builds.images.slice(0, 1).map((tes) => (
+                          <>
+                            <div className="relative">
                               <NavLink to={`/detail/${builds.id}`}>
                                 <img
                                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
@@ -210,10 +308,22 @@ const LandingPage = () => {
                                   className="h-full object-fill"
                                   key={tes.id}
                                 />
+                                <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
+                                  <AiOutlineStar className="mr-1" size={20} />
+                                  {builds.rating} / 5.0
+                                </p>
+                                <div className="border border-black/30 rounded-lg shadow-sm shadow-slate-500 p-3 min-h-[80px]">
+                                  <p className="text-sm mb-1 my-auto">
+                                    {builds.complex.complex_name}, {builds.name}
+                                  </p>
+                                  <p className="text-xs my-auto">
+                                    {builds.address}
+                                  </p>
+                                </div>
                               </NavLink>
-                            </>
-                          )
-                        )
+                            </div>
+                          </>
+                        ))
                       : null}
                   </>
                 );
