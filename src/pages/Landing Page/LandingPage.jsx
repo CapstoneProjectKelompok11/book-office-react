@@ -21,7 +21,7 @@ const LandingPage = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=6"
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99"
       )
       .then((res) => {
         setData(res.data.data);
@@ -59,7 +59,10 @@ const LandingPage = () => {
             </form>
           </div>
           <div>
-            <button href="/listing" className="bg-[#4D89FF] p-2 mt-8 rounded-md w-60" >
+            <button
+              href="/listing"
+              className="bg-[#4D89FF] p-2 mt-8 rounded-md w-60"
+            >
               Find All Office
             </button>
           </div>
