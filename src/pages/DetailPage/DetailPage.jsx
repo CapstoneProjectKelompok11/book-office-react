@@ -28,6 +28,7 @@ const DetailPage = () => {
   const [datam, setDatam] = useState([]);
 
   useEffect(() => {
+    //Awal2 dia loading soalnya state loading true
     const getOffice = async () => {
       const response = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
