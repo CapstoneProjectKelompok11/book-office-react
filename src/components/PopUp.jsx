@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BiCaretDown } from "react-icons/bi";
 import success from "../assets/book-success.png";
-import { date } from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
+
 import Profile from "../pages/Profile/Profile";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
