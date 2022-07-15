@@ -25,6 +25,7 @@ const DetailPage = () => {
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isPopUpShow, setIsPopUpShow] = useState(false);
+  const [datam, setDatam] = useState([]);
 
   useEffect(() => {
     const getOffice = async () => {
@@ -34,13 +35,41 @@ const DetailPage = () => {
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
+    
       setData(await response.json());
       setImg(await responseImg.blob());
       setLoading(false);
     };
     getOffice();
+    
+  }, []);
+  console.log("data.data.id", data?.data?.id);
+
+  const dataFloor = data?.data?.id
+  console.log("dataFloor",dataFloor)
+  useEffect(() => {
+    axios
+      .get(
+        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/floor?buildingId=${id}`
+      )
+      .then((res) => {
+        setDatam(res);
+        console.log("res",res)
+      })
+      .catch((err) => {
+        // setError(err);
+      });
   }, []);
 
+  const [floorId, setFloorId] = useState();
+
+  const handleSelectFloor = (id) => {
+    console.log("id",id)
+    setFloorId(id)
+  }
+
+
+console.log("datam",datam)
   return (
     <div>
       {loading ? (
@@ -136,76 +165,45 @@ const DetailPage = () => {
             <div>
               <div className="text-2xl font-medium pt-12">Type Office</div>
               <div className=" w-full max-w-full py-5 ">
-                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
+                {datam?.data?.data?.map((floor) => (
+                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">                                          
                   <div>
                     <img
                       className="w-60 h-full rounded-tl-md rounded-bl-md"
-                      src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
+                      src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/floor/image/${floor.image}`}
                       alt="/"
                     />
                   </div>
                   <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
                     <div className="">
+                    
                       <div className="text-black font-medium text-xl mb-2">
-                        Floor 48th, Equity Tower, Serviced office
+                        {floor.name}
                       </div>
                       <p className="text-gray-700 text-base">
-                        Participant : 1-8 people
+                        Participant : {floor.max_capacity}
                       </p>
                       <p className="text-gray-700 text-base">
-                        Floor Size : 442.20 sqm
+                        Floor Size : {floor.floor_size}
                       </p>
                       <p className="text-gray-700 text-base">
-                        Price start at Rp 19.000.000
+                        Price start at {floor.starting_price}
                       </p>
                     </div>
                   </div>
                   <div className="mx-auto my-auto">
                     <button
                       className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                      onClick={() => setIsPopUpShow(true)}
+                      onClick={() => {setIsPopUpShow(true);
+                      handleSelectFloor(floor.id)}}
                     >
                       Book
                     </button>
                   </div>
                 </div>
+                      ))}
               </div>
-
-              <div className=" w-full max-w-full py-5 ">
-                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">
-                  <div>
-                    <img
-                      className="w-60 h-full rounded-tl-md rounded-bl-md"
-                      src="https://github.com/achmadrizky486/travel-website/blob/main/src/assets/borabora.jpg?raw=true"
-                      alt="/"
-                    />
-                  </div>
-                  <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
-                    <div className="">
-                      <div className="text-black font-medium text-xl mb-2">
-                        Floor 48th, Equity Tower, Serviced office
-                      </div>
-                      <p className="text-gray-700 text-base">
-                        Participant : 1-8 people
-                      </p>
-                      <p className="text-gray-700 text-base">
-                        Floor Size : 442.20 sqm
-                      </p>
-                      <p className="text-gray-700 text-base">
-                        Price start at Rp 19.000.000
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mx-auto my-auto">
-                    <button
-                      className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                      onClick={() => setIsPopUpShow(true)}
-                    >
-                      Book
-                    </button>
-                  </div>
-                </div>
-              </div>
+   
             </div>
             {/* End of Card Type Office */}
             {/* ------------------Review------------------ */}
@@ -460,7 +458,7 @@ const DetailPage = () => {
           </div>
         </div>
       )}
-      <PopUp show={isPopUpShow} onClose={() => setIsPopUpShow(false)} />
+      <PopUp show={isPopUpShow} items={floorId} onClose={() => setIsPopUpShow(false)} />
     </div>
   );
 };

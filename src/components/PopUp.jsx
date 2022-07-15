@@ -5,12 +5,72 @@ import success from "../assets/book-success.png";
 import { date } from "https://unpkg.com/flowbite@1.4.7/dist/datepicker.js";
 import Profile from "../pages/Profile/Profile";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
-export default function PopUp({ show, onClose }) {
+export default function PopUp({ show, onClose ,items}) {
+  console.log("items", items);
+  console.log("show", show);
+  const API_URL = process.env.REACT_APP_BASE_URL;
   const [bookSuccess, setBookSuccess] = useState(false);
   const [tab, setTab] = useState("My Booking");
+  
+  
+  const [dataForm, setDataForm] = useState({
+    reservation: "",
+    company: "",
+    phone: "",
+    participant: "",
+    note: "",
+  });
+  
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    
+    setDataForm({
+      ...dataForm,
+        [name]:value,
+        
+      })
+    }
+    console.log(dataForm)
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      
+      
+      const date = dataForm.reservation?.substring(8,10) + '-' + dataForm.reservation?.substring(5,7) + '-' + dataForm.reservation?.substring(0,4);
+      const SubmitData = {
+      start_reservation:date+" 00:00:00",
+      company:dataForm.company,
+      phone:dataForm.phone,
+      participant:dataForm.participant,
+      note:dataForm.note,     
+    }
+    axios
+    .post(
+      API_URL+`auth/reservation?floorId=${items}`, SubmitData, {
+        headers : {
+          'Authorization': `Bearer ${Cookies.get('token')}`
+        }
+      }
+    )
+    .then((response)=>
+    {
+    if(response.status === 200)
+      {
+        setBookSuccess(true);
+      }else{
+        console.log("gagal");
+      }
+    }
+   )
+  }
+  
+  
   if (!show) return null;
-
+  
   const BookSuccess = () => {
     function close() {
       setBookSuccess(false);
@@ -107,6 +167,7 @@ export default function PopUp({ show, onClose }) {
                     ></button>
                   </div>
                   {/*body*/}
+                  <form onSubmit={handleSubmit}>
                   <div className="w-[550px] mx-auto">
                     <div>
                       <p className="text-center text-xl font-medium">
@@ -121,9 +182,9 @@ export default function PopUp({ show, onClose }) {
                             id="location"
                             name="location"
                             className="bg-transparent w-full focus:outline-none mx-2 text-black "
-                          >
+                            >
                             <option value="jakarta barat">
-                              Jakarta Barat Floor kdsajhfkjashkdjhkajs
+                              Jakarta Barat Floor 
                             </option>
                             <option value="jakarta pusat">Jakarta Pusat</option>
                             <option value="jakarta selatan">
@@ -142,9 +203,11 @@ export default function PopUp({ show, onClose }) {
                         </p>
                         <input
                           type="date"
-                          name=""
+                          name="reservation"
                           id=""
                           className="w-full border-2 p-1 rounded-md text-black bg-white border-black"
+                          value={dataForm.reservation}
+                          onChange={handleInput}
                         />
                       </div>
                       <div>
@@ -152,15 +215,17 @@ export default function PopUp({ show, onClose }) {
                         <form className="flex items-center max-w-[700px] mx-auto w-full border-2 p-1 rounded-md text-black bg-white border-black">
                           <div className="flex items-center w-full ">
                             <select
-                              id="location"
-                              name="location"
+                              id=""
+                              name="participant"
                               className="bg-transparent w-full focus:outline-none mx-2 text-black "
+                              value={dataForm.participant}
+                              onChange={handleInput}
                             >
-                              <option value="jakarta barat">1</option>
-                              <option value="jakarta pusat">2</option>
-                              <option value="jakarta selatan">3</option>
-                              <option value="jakarta timur">4</option>
-                              <option value="jakarta utara">5</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
                             </select>
                           </div>
                         </form>
@@ -170,31 +235,38 @@ export default function PopUp({ show, onClose }) {
                       <p className="text-xl font-medium my-3">Company Name</p>
                       <input
                         type="text"
-                        name=""
+                        name="company"
                         id=""
                         className="w-full border-2 p-1 rounded-md text-black bg-white border-black"
+                        value={dataForm.company}
+                          onChange={handleInput}
                       />
                     </div>
                     <div>
                       <p className="text-xl font-medium my-3">Phone Number</p>
                       <input
                         type="text"
-                        name=""
+                        name="phone"
                         id=""
                         className="w-full border-2 p-1 rounded-md text-black bg-white border-black"
+                        value={dataForm.phone}
+                        onChange={handleInput}
                       />
                     </div>
                     <div>
                       <p className="text-xl font-medium my-3">Quick Message</p>
-                      <textarea className="w-full border-2 p-1 rounded-md text-black bg-white border-black"></textarea>
+                      <textarea className="w-full border-2 p-1 rounded-md text-black bg-white border-black"
+                      name="note"
+                      value={dataForm.note}
+                      onChange={handleInput}></textarea>
                     </div>
-                    {/*footer*/}
+                    
                     <div>
                       <div className="w-full">
                         <div className="text-center my-10">
                           <button
                             className="text-xl font-normal py-2 text-white bg-blue-500 shadow-sm rounded-lg w-full"
-                            onClick={() => setBookSuccess(true)}
+                           type="submit"
                           >
                             Request a Booking
                           </button>
@@ -202,6 +274,7 @@ export default function PopUp({ show, onClose }) {
                       </div>
                     </div>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>
