@@ -134,7 +134,7 @@ const Register = () => {
           setUserExist("does't exist");
           setAllValid("valid");
           setLoading(false);
-          navigate("/login");
+          navigate("/");
         })
         .catch((error) => {
           setUserExist("exists");

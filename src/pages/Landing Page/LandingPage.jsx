@@ -116,7 +116,7 @@ const LandingPage = () => {
         <div className="justify-between pt-12">
           <Slider {...settings}>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <img
                   className="object-fill brightness-[.7]"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/5cf15fed-fd5a-425a-84b2-4059454bd71e.jpg`}
@@ -128,7 +128,7 @@ const LandingPage = () => {
               </NavLink>
             </div>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
                   Senayan City
                 </p>
@@ -140,7 +140,7 @@ const LandingPage = () => {
               </NavLink>
             </div>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
                   Tanah Abang
                 </p>
@@ -152,7 +152,7 @@ const LandingPage = () => {
               </NavLink>
             </div>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
                   SCBD
                 </p>
@@ -164,7 +164,7 @@ const LandingPage = () => {
               </NavLink>
             </div>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
                   Senayan City
                 </p>
@@ -176,7 +176,7 @@ const LandingPage = () => {
               </NavLink>
             </div>
             <div className="border-2 relative">
-              <NavLink to={`/detail`}>
+              <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
                   Tanah Abang
                 </p>
