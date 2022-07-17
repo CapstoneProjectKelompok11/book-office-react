@@ -35,9 +35,9 @@ const LandingPage = () => {
         className={className}
         style={{
           ...style,
-          display: "block",
           background: "blue",
           margin: "10px 10px 10px 10px",
+          alignItems: "center",
         }}
         onClick={onClick}
       />
@@ -114,74 +114,74 @@ const LandingPage = () => {
       <div className="mx-auto py-16 px-4 text-center">
         <h2 className="font-medium">Top Places in Jakarta</h2>
         <div className="justify-between pt-12">
-          <Slider {...settings}>
-            <div className="border-2 relative">
+          <Slider {...settings} className="max-w-[1200px] mx-auto gap-96">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/5cf15fed-fd5a-425a-84b2-4059454bd71e.jpg`}
                   alt="img"
                 />
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   SCBD
                 </p>
               </NavLink>
             </div>
-            <div className="border-2 relative">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   Senayan City
                 </p>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/f86d58ee-aea6-4588-9de6-8fcb86c9444e.jpg`}
                   alt="img"
                 />
               </NavLink>
             </div>
-            <div className="border-2 relative">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   Tanah Abang
                 </p>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/c7326799-84da-4ee0-84ef-78e222763f8f.jpg`}
                   alt="img"
                 />
               </NavLink>
             </div>
-            <div className="border-2 relative">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   SCBD
                 </p>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/81ee853c-a51c-4734-887e-a74615d4e0ca.jpg`}
                   alt="img"
                 />
               </NavLink>
             </div>
-            <div className="border-2 relative">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   Senayan City
                 </p>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d2e913e3-3dc3-427f-8080-c408e5f14537.jpg`}
                   alt="img"
                 />
               </NavLink>
             </div>
-            <div className="border-2 relative">
+            <div className="relative px-5">
               <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-5 text-base font-medium text-white">
+                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
                   Tanah Abang
                 </p>
                 <img
-                  className="object-fill brightness-[.7]"
+                  className="object-fill brightness-[.7] rounded-lg"
                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/0614c676-f92d-4707-a66e-b83a39e529ad.jpg`}
                   alt="img"
                 />
@@ -192,7 +192,10 @@ const LandingPage = () => {
       </div>
 
       {/* -----------------End of Top Places-------------------- */}
-      <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
+      <div
+        className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]"
+        id="about"
+      >
         <div className="mx-auto grid grid-cols-3 gap-4 ">
           <div className="col-span-2 flex flex-col my-10 ml-20">
             <div>
@@ -269,7 +272,7 @@ const LandingPage = () => {
                                 <img
                                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                   alt="img"
-                                  className="h-full object-fill rounded-lg brightness-[.7]"
+                                  className="h-full object-fill rounded-lg brightness-[.7] rounded-lg"
                                   key={tes.id}
                                 />{" "}
                                 <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
@@ -313,7 +316,7 @@ const LandingPage = () => {
                                 <img
                                   src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
                                   alt="img"
-                                  className="h-full object-fill brightness-[.7]"
+                                  className="h-full object-fill brightness-[.7] rounded-lg"
                                   key={tes.id}
                                 />
                                 <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
@@ -348,7 +351,7 @@ const LandingPage = () => {
       {/* -------------End of Card SCBD Hotel------------------- */}
       {/* -----------Find Us----------------- */}
       <div>
-        <p className="mt-20 mb-28 text-center text-2xl font-semibold">
+        <p className="mt-20 mb-28 text-center text-2xl font-semibold" id="find">
           Find us
         </p>
         <div>

@@ -35,18 +35,17 @@ const DetailPage = () => {
       const responseImg = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
-    
+
       setData(await response.json());
       setImg(await responseImg.blob());
       setLoading(false);
     };
     getOffice();
-    
   }, []);
   console.log("data.data.id", data?.data?.id);
 
-  const dataFloor = data?.data?.id
-  console.log("dataFloor",dataFloor)
+  const dataFloor = data?.data?.id;
+  console.log("dataFloor", dataFloor);
   useEffect(() => {
     axios
       .get(
@@ -54,7 +53,7 @@ const DetailPage = () => {
       )
       .then((res) => {
         setDatam(res);
-        console.log("res",res)
+        console.log("res", res);
       })
       .catch((err) => {
         // setError(err);
@@ -64,12 +63,11 @@ const DetailPage = () => {
   const [floorId, setFloorId] = useState();
 
   const handleSelectFloor = (id) => {
-    console.log("id",id)
-    setFloorId(id)
-  }
+    console.log("id", id);
+    setFloorId(id);
+  };
 
-
-console.log("datam",datam)
+  console.log("datam", datam);
   return (
     <div>
       {loading ? (
@@ -166,45 +164,44 @@ console.log("datam",datam)
               <div className="text-2xl font-medium pt-12">Type Office</div>
               <div className=" w-full max-w-full py-5 ">
                 {datam?.data?.data?.map((floor) => (
-                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500 mb-4"> 
-                                                       
-                  <div>
-                    <img
-                      className="w-60 h-full rounded-tl-md rounded-bl-md"
-                      src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/floor/image/${floor.image}`}
-                      alt="/"
-                    />
-                  </div>
-                  <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
-                    <div className="">
-                    
-                      <div className="text-black font-medium text-xl mb-2">
-                        {floor.name}
+                  <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500 mb-4">
+                    <div>
+                      <img
+                        className="w-60 h-full rounded-tl-md rounded-bl-md"
+                        src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/floor/image/${floor.image}`}
+                        alt="/"
+                      />
+                    </div>
+                    <div className=" p-4 flex flex-col justify-between leading-normal w-full h-full">
+                      <div className="">
+                        <div className="text-black font-medium text-xl mb-2">
+                          {floor.name}
+                        </div>
+                        <p className="text-gray-700 text-base">
+                          Participant : {floor.max_capacity}
+                        </p>
+                        <p className="text-gray-700 text-base">
+                          Floor Size : {floor.floor_size}
+                        </p>
+                        <p className="text-gray-700 text-base">
+                          Price start at : {floor.starting_price}
+                        </p>
                       </div>
-                      <p className="text-gray-700 text-base">
-                        Participant : {floor.max_capacity}
-                      </p>
-                      <p className="text-gray-700 text-base">
-                        Floor Size : {floor.floor_size}
-                      </p>
-                      <p className="text-gray-700 text-base">
-                        Price start at : {floor.starting_price}
-                      </p>
+                    </div>
+                    <div className="mx-auto my-auto">
+                      <button
+                        className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
+                        onClick={() => {
+                          setIsPopUpShow(true);
+                          handleSelectFloor(floor.id);
+                        }}
+                      >
+                        Book
+                      </button>
                     </div>
                   </div>
-                  <div className="mx-auto my-auto">
-                    <button
-                      className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                      onClick={() => {setIsPopUpShow(true);
-                      handleSelectFloor(floor.id)}}
-                    >
-                      Book
-                    </button>
-                  </div>
-                </div>
-                      ))}
+                ))}
               </div>
-   
             </div>
             {/* End of Card Type Office */}
             {/* ------------------Review------------------ */}
@@ -317,13 +314,28 @@ console.log("datam",datam)
                     style={{ color: "#FBCD0A" }}
                   />
                 </div>
-                <div className="w-full h-full border-2 border-slate-300 my-auto">
+                <div className="w-[1630px] h-full border-2 border-slate-300 my-auto">
                   <div
                     className="bg-yellow-400 h-2 mx-0 border-2 border-yellow-400"
                     style={{ width: "45%" }}
                   ></div>
                 </div>
                 <div className="flex w-full my-auto mx-3">45% (45)</div>
+                <div className="flex text-blue-500 w-96 cursor-pointer">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16 2.01172L19 5.01172L16.713 7.29972L13.713 4.29972L16 2.01172ZM4 13.9997V16.9997H7L15.299 8.71272L12.299 5.71272L4 13.9997ZM4 19.9997H20V21.9997H4V19.9997Z"
+                      fill="#4D89FF"
+                    />
+                  </svg>
+                  <p className="ml-1">Write a review</p>
+                </div>
               </div>
             </div>
             {/* Card review */}
@@ -450,7 +462,7 @@ console.log("datam",datam)
               1 2 3
             </div>
             <div className="my-9">
-              <a href="#Navbar">
+              <a href="#top">
                 <div className="bg-blue-500 rounded-full w-fit p-2 ml-auto">
                   <IoIosArrowUp className=" text-white " size={30} />
                 </div>
@@ -459,7 +471,11 @@ console.log("datam",datam)
           </div>
         </div>
       )}
-      <PopUp show={isPopUpShow} items={floorId} onClose={() => setIsPopUpShow(false)} />
+      <PopUp
+        show={isPopUpShow}
+        items={floorId}
+        onClose={() => setIsPopUpShow(false)}
+      />
     </div>
   );
 };
