@@ -190,9 +190,7 @@ const LandingPage = () => {
           </Slider>
         </div>
       </div>
-      <div className="text-center p-4">
-        <NavLink to="/listing">More List</NavLink>
-      </div>
+
       {/* -----------------End of Top Places-------------------- */}
       <div className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]">
         <div className="mx-auto grid grid-cols-3 gap-4 ">

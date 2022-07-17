@@ -166,7 +166,8 @@ console.log("datam",datam)
               <div className="text-2xl font-medium pt-12">Type Office</div>
               <div className=" w-full max-w-full py-5 ">
                 {datam?.data?.data?.map((floor) => (
-                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500">                                          
+                <div className="flex grid-cols-3 rounded-md shadow-sm shadow-gray-500 mb-4"> 
+                                                       
                   <div>
                     <img
                       className="w-60 h-full rounded-tl-md rounded-bl-md"
@@ -187,7 +188,7 @@ console.log("datam",datam)
                         Floor Size : {floor.floor_size}
                       </p>
                       <p className="text-gray-700 text-base">
-                        Price start at {floor.starting_price}
+                        Price start at : {floor.starting_price}
                       </p>
                     </div>
                   </div>
