@@ -27,7 +27,6 @@ const DetailPage = () => {
   const [datam, setDatam] = useState([]);
 
   useEffect(() => {
-    //Awal2 dia loading soalnya state loading true
     const getOffice = async () => {
       const response = await fetch(
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
@@ -36,9 +35,9 @@ const DetailPage = () => {
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
 
-      setData(await response.json());
-      setImg(await responseImg.blob());
-      setLoading(false);
+      setData(await response.json()); //Buat dapetin data json biar
+      setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
+      setLoading(false); // setState handle loading
     };
     getOffice();
   }, []);
@@ -191,7 +190,7 @@ const DetailPage = () => {
                     <div className="mx-auto my-auto">
                       <button
                         className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                        onClick={() => {
+                        onClick={() => { //Buat nampilin popup Booking
                           setIsPopUpShow(true);
                           handleSelectFloor(floor.id);
                         }}

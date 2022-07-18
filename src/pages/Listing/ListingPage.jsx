@@ -21,10 +21,10 @@ const ListingPage = () => {
     if (dataFilter === "" || dataFilter === "All Cities") {
       return data;
     } else {
-      return(
-         session.complex.city.city_name === dataFilter ||
-          session.complex.complex_name === dataFilter     
-          )  
+      return (
+        session.complex.city.city_name === dataFilter ||
+        session.complex.complex_name === dataFilter
+      );
     }
   });
 
@@ -35,34 +35,30 @@ const ListingPage = () => {
   };
   console.log("cek search", searchInput);
   const filter = data.filter((session) => {
-    if (searchInput === "" ) {
+    if (searchInput === "") {
       return session;
     } else {
-      return (
-        session.name.toLowerCase().includes(searchInput) 
-        )
-      }
-    });
-    const filters = (searchInput === "" ) ? filtered:filter
+      return session.name.toLowerCase().includes(searchInput);
+    }
+  });
+  const filters = searchInput === "" ? filtered : filter;
 
   useEffect(() => {
-    const getOffice = async () => {
+    const getOffice = async () => { //Coba get data pake axios
       axios
         .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings")
         .then((res) => {
           setData(res.data.data);
         });
 
-      const responseImg = await fetch(
+      const responseImg = await fetch( //Coba get data pake fetch
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
-
-      setImg(await responseImg.blob());
-      setLoading(false);
+      setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
+      setLoading(false); // setState handle loading
     };
     getOffice();
   }, []);
-
 
   useEffect(() => {
     axios
@@ -92,8 +88,6 @@ const ListingPage = () => {
       });
   }, []);
 
-  
-
   const handleChangeFilter = (e) => {
     console.log("cek filter", e.target.value);
     setDataFilter(e.target.value);
@@ -103,15 +97,16 @@ const ListingPage = () => {
     console.log("cek filtered", e.target.value);
     setDataFilter(e.target.value);
   };
-  
+
   console.log(data);
   return (
     <div>
-      {loading ? (
+      {loading ? ( //Ternary apakah loading true?(didapat di use effect line 48) setState ny ada di line 61 Tampilin loading (Loading.jsx)
         <div>
           <Loading />
         </div>
       ) : (
+        //Jika false, tampilin dibawah ini
         <>
           <div className="max-w-[1300px] conatiner mx-auto px-4">
             <div className="p-5 text-center text-base font-normal">
@@ -192,7 +187,6 @@ const ListingPage = () => {
             </div>
             {/* -----------------Card------------------ */}
             <div className="max-w-[1040px] mx-auto mt-16">
-
               {filters.map((dataOffice) => {
                 return (
                   <>

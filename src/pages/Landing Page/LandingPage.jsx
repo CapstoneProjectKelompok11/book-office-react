@@ -18,61 +18,48 @@ const LandingPage = () => {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99"
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99" //Ngeget data dari sini
       )
       .then((res) => {
-        setData(res.data.data);
+        setData(res.data.data); //Disimpen disini hasil get nya
       })
       .catch((err) => {
         setError(err);
       });
   }, []);
 
-  const NextArrow = (props) => {
+  const Arrow = (props) => {
+    //Styling arrow buat carousel
     const { className, style, onClick } = props;
     return (
       <div
-        className={className}
+        className={className} //Ini bawaan package, nama package React Slick
         style={{
           ...style,
           background: "blue",
           margin: "10px 10px 10px 10px",
           alignItems: "center",
         }}
-        onClick={onClick}
-      />
-    );
-  };
-  const PrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: "block",
-          background: "blue",
-          margin: "10px 10px 10px 10px",
-        }}
-        onClick={onClick}
+        onClick={onClick} // Bawaaan package react slick
       />
     );
   };
 
   const settings = {
+    //Bawaan package react slick
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <Arrow />, //manggil arrow di line 31
+    prevArrow: <Arrow />,
   };
 
   return (
     <div>
       {/* ----------------------Banner---------------- */}
-      <div className="w-full h-[400px] relative ">
+      <div className="w-full h-[400px] relative">
         <img
           src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/Banner.png"
           alt="/"
@@ -92,9 +79,9 @@ const LandingPage = () => {
                   placeholder="Search Destination"
                 />
                 <div>
-                  <BiSearchAlt
+                  <BiSearchAlt //icon dari package react icons
                     className="mr-4 text-black cursor-pointer"
-                    size={18}
+                    size={18} //ngatur size icons, bawaan react icons
                   />
                 </div>
               </div>
@@ -115,6 +102,8 @@ const LandingPage = () => {
         <h2 className="font-medium">Top Places in Jakarta</h2>
         <div className="justify-between pt-12">
           <Slider {...settings} className="max-w-[1200px] mx-auto gap-96">
+            {" "}
+            {/* Manggil carousel pake <Slider> + template cara manggil carousel => aturan bawaan react slick */}
             <div className="relative px-5">
               <NavLink to={`/listing`}>
                 <img
@@ -187,14 +176,15 @@ const LandingPage = () => {
                 />
               </NavLink>
             </div>
-          </Slider>
+          </Slider>{" "}
+          {/* Tag penutup slider buat manggil carousel */}
         </div>
       </div>
 
       {/* -----------------End of Top Places-------------------- */}
       <div
         className="my-16 bg-gradient-to-r from-white via-stone-150 to-stone-200 h-[350px]"
-        id="about"
+        id="about" //dikasih Id buat auto navigate ke section ini, manggilnya ada di Navbar.jsx
       >
         <div className="mx-auto grid grid-cols-3 gap-4 ">
           <div className="col-span-2 flex flex-col my-10 ml-20">
@@ -260,17 +250,19 @@ const LandingPage = () => {
         <div className="mx-auto">
           <div className="grid grid-cols-4 gap-1 place-items-center pt-5 px-5 mx-14">
             {data.map((builds) => {
+              // Data dari hasil get di map dengan nama builds
               // console.log(builds);
               return (
                 <>
-                  {builds.complex.complex_name === "SCBD"
+                  {builds.complex.complex_name === "SCBD" //Ternarry operation buat kondisi jika complex name berisi SCBD maka dia nge map, selain berisi SCBD gak bakal di map
                     ? builds.images.slice(0, 1).map((tes) => {
+                        //Map dengan nama tes
                         return (
                           <>
                             <div className="relative">
                               <NavLink to={`/detail/${builds.id}`}>
                                 <img
-                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`}
+                                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`} //Akses tes.fileName
                                   alt="img"
                                   className="h-full object-fill rounded-lg brightness-[.7]"
                                   key={tes.id}
@@ -293,6 +285,7 @@ const LandingPage = () => {
                         );
                       })
                     : null}
+                  {/* Jika complex_name tidak berisi SCBD maka tampilkan null */}
                 </>
               );
             })}
@@ -308,7 +301,7 @@ const LandingPage = () => {
               {data.map((builds) => {
                 return (
                   <>
-                    {builds.complex.complex_name === "Senayan City"
+                    {builds.complex.complex_name === "Senayan City" //Sama kayak ternary sebelumnya
                       ? builds.images.slice(0, 1).map((tes) => (
                           <>
                             <div className="relative">
@@ -335,7 +328,7 @@ const LandingPage = () => {
                             </div>
                           </>
                         ))
-                      : null}
+                      : null} {/* Sama kek ternary sebelumnya */}
                   </>
                 );
               })}
