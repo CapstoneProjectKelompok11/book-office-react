@@ -13,7 +13,6 @@ import {
   AiOutlineCloseCircle,
 } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
-import { BiCaretDown } from "react-icons/bi";
 import Loading from "../../components/Loading";
 import PopUp from "../../components/PopUp";
 
@@ -470,15 +469,68 @@ const DetailPage = () => {
                 </div>
               </div>
             </div>
-            <div className=" w-full text-center text-base font-normal">
+            {/* <div className=" w-full text-center text-base font-normal">
               1 2 3
+            </div> */}
+            <p className="mt-10 text-2xl font-semibold">Nearby Office</p>
+            <div className="mx-auto">
+              <div className="grid grid-cols-4 gap-1 place-items-center pt-5">
+                {dataAll.map((builds) => {
+                  // Data dari hasil get di map dengan nama builds
+                  // console.log(builds);
+                  return (
+                    <>
+                      {builds.complex.complex_name ===
+                      data.data.complex.complex_name //Ternarry operation buat kondisi jika complex name berisi SCBD maka dia nge map, selain berisi SCBD gak bakal di map
+                        ? builds.images.slice(0, 1).map((tes) => {
+                            //Map dengan nama tes
+                            return (
+                              <>
+                                <div
+                                  className="relative"
+                                  onClick={() => window.location.reload(false)}
+                                >
+                                  <NavLink to={`/detail/${builds.id}`}>
+                                    <img
+                                      src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/${tes.fileName}`} //Akses tes.fileName
+                                      alt="img"
+                                      className="h-full object-fill rounded-lg brightness-[.7]"
+                                      key={tes.id}
+                                    />
+                                    <p className="z-10 absolute top-0 left-0 text-sm font-normal text-white bg-blue-500 rounded-tl-lg flex items-center px-2 py-1">
+                                      <AiOutlineStar
+                                        className="mr-1"
+                                        size={20}
+                                      />
+                                      {builds.rating} / 5
+                                    </p>
+                                    <div className="border border-black/30 rounded-lg shadow-sm shadow-slate-500 p-3 min-h-[80px]">
+                                      <p className="text-sm mb-1 my-auto">
+                                        {builds.complex.complex_name},{" "}
+                                        {builds.name}
+                                      </p>
+                                      <p className="text-xs my-auto">
+                                        {builds.address}
+                                      </p>
+                                    </div>
+                                  </NavLink>
+                                </div>
+                              </>
+                            );
+                          })
+                        : null}
+                      {/* Jika complex_name tidak berisi SCBD maka tampilkan null */}
+                    </>
+                  );
+                })}
+              </div>
             </div>
             <div className="my-9">
-              <a href="#top">
-                <div className="bg-blue-500 rounded-full w-fit p-2 ml-auto">
-                  <IoIosArrowUp className=" text-white " size={30} />
-                </div>
-              </a>
+              <div className="bg-blue-500 rounded-full w-fit p-2 ml-auto">
+                <a href="#top">
+                  <IoIosArrowUp className=" text-white" size={30} />
+                </a>
+              </div>
             </div>
           </div>
         </div>

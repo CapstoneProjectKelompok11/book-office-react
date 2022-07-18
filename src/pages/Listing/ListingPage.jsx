@@ -44,14 +44,16 @@ const ListingPage = () => {
   const filters = searchInput === "" ? filtered : filter;
 
   useEffect(() => {
-    const getOffice = async () => { //Coba get data pake axios
+    const getOffice = async () => {
+      //Coba get data pake axios
       axios
         .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings")
         .then((res) => {
           setData(res.data.data);
         });
 
-      const responseImg = await fetch( //Coba get data pake fetch
+      const responseImg = await fetch(
+        //Coba get data pake fetch
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
       );
       setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
@@ -116,30 +118,30 @@ const ListingPage = () => {
               <div className="">
                 <p>Search</p>
                 <form className="flex items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-white bg-gray-100/90">
-                  <div className="flex items-center">
+                  <div className="flex items-center w-full">
                     <input
-                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
+                      className="bg-transparent w-full focus:outline-none mx-2 text-black"
                       type="text"
                       placeholder="Search a place"
                       onChange={inputHandler}
                     />
-                    <div>
-                      <BiSearchAlt
-                        className="mr-4 text-black cursor-pointer"
-                        size={18}
-                      />
-                    </div>
+                  </div>
+                  <div>
+                    <BiSearchAlt
+                      className="mr-4 text-black cursor-pointer"
+                      size={18}
+                    />
                   </div>
                 </form>
               </div>
               <div>
-                <p>Filter</p>
+                <p>Filter by City</p>
                 <form className="flex items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90">
-                  <div className="flex items-center">
+                  <div className="w-full mr-4">
                     <select
                       id="location"
                       name="location"
-                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
+                      className="bg-transparent w-full focus:outline-none mx-2 text-black"
                       onChange={handleChangeFilter}
                     >
                       <option value="All Cities">All Cities</option>
@@ -149,23 +151,17 @@ const ListingPage = () => {
                         </option>
                       ))}
                     </select>
-                    <div>
-                      <BiCaretDown
-                        className="mr-4 text-black cursor-pointer"
-                        size={18}
-                      />
-                    </div>
                   </div>
                 </form>
               </div>
               <div>
-                <p>Sort By</p>
+                <p>Filter By Complex</p>
                 <form className="flex items-center max-w-[700px] mx-auto w-full border p-1 rounded-md text-black bg-gray-100/90">
-                  <div className="flex items-center">
+                  <div className="w-full mr-4">
                     <select
                       id="location"
                       name="location"
-                      className="bg-transparent w-[150px] focus:outline-none mx-2 text-black"
+                      className="bg-transparent w-full focus:outline-none mx-2 text-black"
                       onChange={handleChangeFiltered}
                     >
                       <option value="All Complex">All Complex</option>
@@ -175,12 +171,6 @@ const ListingPage = () => {
                         </option>
                       ))}
                     </select>
-                    <div>
-                      <BiCaretDown
-                        className="mr-4 text-black cursor-pointer"
-                        size={18}
-                      />
-                    </div>
                   </div>
                 </form>
               </div>
