@@ -26,7 +26,9 @@ export default function PopUp({ show, onClose ,items}) {
   });
   
   const handleInput = (e) => {
+    //nama inputnya
     const name = e.target.name;
+      //e target value buat inputan yg diisi
     const value = e.target.value;
     
     setDataForm({
@@ -48,6 +50,8 @@ export default function PopUp({ show, onClose ,items}) {
       participant:dataForm.participant,
       note:dataForm.note,     
     }
+
+    //items props yang dikirim dari halaman sebelumnya
     axios
     .post(
       API_URL+`auth/reservation?floorId=${items}`, SubmitData, {

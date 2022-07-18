@@ -73,6 +73,7 @@ const DetailPage = () => {
 
   const [floorId, setFloorId] = useState();
 
+  //buat dapetin id floor
   const handleSelectFloor = (id) => {
     console.log("id", id);
     setFloorId(id);
