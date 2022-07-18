@@ -40,7 +40,7 @@ const Footer = () => {
                   <a className="text-white">Call us</a>
                 </li>
                 <li>
-                  <a className="text-white">08192319204928</a>
+                  <a className="text-white">081923192049</a>
                 </li>
               </nav>
             </div>
