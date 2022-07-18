@@ -7,6 +7,7 @@ import Listing from "./pages/Listing/ListingPage";
 import Profile from "./pages/Profile/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { PrivateRoute } from "./PrivateRoute";
 
 function App() {
   return (
@@ -15,11 +16,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route exact path="/" element={<PrivateRoute/>}>
           <Route path="/Home" element={<LandingPage />} />
           <Route path="/Register/" element={<Register />} />
           <Route path="/Listing" element={<Listing />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Detail/:id" element={<DetailPage />} />
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
