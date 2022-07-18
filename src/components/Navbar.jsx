@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineInbox, AiOutlineHeart } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { NavLink } from "react-router-dom";
 
@@ -38,11 +39,12 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex">
-            <AiOutlineInbox size={18} />
-            <AiOutlineHeart size={18} className="mx-4" />
+            <AiOutlineInbox size={18} className="mr-4" />
+            <AiOutlineHeart size={18} className="mr-4" />
             <NavLink to={`/profile`}>
-              <VscAccount size={18} className="mr-20" />
+              <VscAccount size={18} className="mr-4" />
             </NavLink>
+            <BiLogOut size={18} className="mr-20" />
           </div>
         </div>
       </div>
