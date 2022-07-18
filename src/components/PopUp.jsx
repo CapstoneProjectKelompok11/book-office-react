@@ -39,7 +39,7 @@ export default function PopUp({ show, onClose ,items}) {
     const handleSubmit = (e) => {
       e.preventDefault();
       
-      
+      //date untuk mengambil data tanggal bulan tahun dan substring mengambil string tertentu
       const date = dataForm.reservation?.substring(8,10) + '-' + dataForm.reservation?.substring(5,7) + '-' + dataForm.reservation?.substring(0,4);
       const SubmitData = {
       start_reservation:date+" 00:00:00",

@@ -3,8 +3,22 @@ import { AiOutlineInbox, AiOutlineHeart } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
+
+  const navigate = useNavigate()
+  const logout = () => {
+    navigate("/")
+  }
+
+  const deleteCookies = () => {
+    Cookies.remove("token", { path: "/"})
+
+  }
+
+
   return (
     <>
       <div>
@@ -44,7 +58,8 @@ const Navbar = () => {
             <NavLink to={`/profile`}>
               <VscAccount size={18} className="mr-4" />
             </NavLink>
-            <BiLogOut size={18} className="mr-20" />
+            <BiLogOut size={18} className="mr-20"
+            onClick = {()=>{logout(); deleteCookies()}}  />
           </div>
         </div>
       </div>
