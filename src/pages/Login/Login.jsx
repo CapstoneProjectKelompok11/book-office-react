@@ -105,14 +105,14 @@ const Login = () => {
   };
 
   return (
-    <section className="w-full bg-white">
+    <section className="w-full bg-white max-h-screen">
       <div className="mx-auto">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col lg:flex-row">
             <div className="relative w-full bg-cover lg:w-6/12 xl:w-6/12">
               <div className="relative flex flex-col items-center justify-center w-full">
                 <img
-                  className=""
+                  className="h-screen w-full"
                   src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/image/Image.png"
                   alt=""
                 />
@@ -174,7 +174,6 @@ const Login = () => {
                       </svg>
                     </div>
                   </div>
-
                   <div className="pt-5 text-center md:text-left">
                     <button
                       type="submit"

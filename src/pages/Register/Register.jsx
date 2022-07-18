@@ -149,18 +149,18 @@ const Register = () => {
   };
 
   return (
-    <section className="w-full">
+    <section className="w-full h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-0">
+        <div className="grid grid-cols-2">
           <div className="w-full">
             <img
-              className="w-full"
+              className="w-full h-screen"
               src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/image/bglogin.png"
               alt=""
             />
           </div>
-          <div className="w-full">
-            <div className="text-center pb-10 md:pb-1 pt-44 text-xl italic font-semibold">
+          <div className="w-full my-auto">
+            <div className="text-center pb-10 md:pb-1 text-xl italic font-semibold">
               <p>Sign up your account</p>
             </div>
             <div className="items-start justify-start w-full px-24 xl:pt-5">
