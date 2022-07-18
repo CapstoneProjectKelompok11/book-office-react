@@ -55,8 +55,8 @@ const Login = () => {
     if (isEmailValid && isPasswordValid) {
       setLoading(true);
 
-      axios //axiosInstance
-        .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", {
+      axiosInstance
+        .post("/login", {
           email: dataForm.email,
           password: dataForm.password,
         })
