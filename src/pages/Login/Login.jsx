@@ -27,9 +27,7 @@ const Login = () => {
     const email = e.target.value;
     console.log("value", email);
     setEmail(email);
-    if (
-      email
-    ) {
+    if (email) {
       setEmailValid(true);
       setDataForm((state) => ({ ...state, email }));
     } else {
@@ -40,9 +38,7 @@ const Login = () => {
   const handlePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
-    if (
-      password
-    ) {
+    if (password) {
       setPasswordValid(true);
       setDataForm((state) => ({ ...state, password }));
     } else {
@@ -59,7 +55,7 @@ const Login = () => {
     if (isEmailValid && isPasswordValid) {
       setLoading(true);
 
-      axiosInstance
+      axios //axiosInstance
         .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", {
           email: dataForm.email,
           password: dataForm.password,
