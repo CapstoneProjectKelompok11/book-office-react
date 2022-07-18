@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
@@ -20,6 +20,7 @@ import PopUp from "../../components/PopUp";
 const DetailPage = () => {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [dataAll, setDataAll] = useState([]);
   const [datas, setDatas] = useState([]);
   const [img, setImg] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,16 +33,26 @@ const DetailPage = () => {
         `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
       );
       const responseImg = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
+        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg` //pakai statik buat
       );
-
       setData(await response.json()); //Buat dapetin data json biar
       setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
       setLoading(false); // setState handle loading
     };
     getOffice();
   }, []);
-  console.log("data.data.id", data?.data?.id);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99" //Ngeget data dari sini
+      )
+      .then((res) => {
+        setDataAll(res.data.data); //Disimpen disini hasil get nya
+      })
+      .catch((err) => {});
+  }, []);
+  console.log("dataAll", dataAll);
 
   const dataFloor = data?.data?.id;
   console.log("dataFloor", dataFloor);
@@ -67,6 +78,7 @@ const DetailPage = () => {
   };
 
   console.log("datam", datam);
+  console.log("data", data);
   return (
     <div>
       {loading ? (
@@ -190,7 +202,8 @@ const DetailPage = () => {
                     <div className="mx-auto my-auto">
                       <button
                         className=" text-xl font-medium px-20 py-2 text-white bg-blue-500 mx-4 rounded-lg"
-                        onClick={() => { //Buat nampilin popup Booking
+                        onClick={() => {
+                          //Buat nampilin popup Booking
                           setIsPopUpShow(true);
                           handleSelectFloor(floor.id);
                         }}
