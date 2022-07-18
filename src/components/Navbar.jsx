@@ -7,17 +7,14 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const logout = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   const deleteCookies = () => {
-    Cookies.remove("token", { path: "/"})
-
-  }
-
+    Cookies.remove("token", { path: "/" });
+  };
 
   return (
     <>
@@ -28,7 +25,7 @@ const Navbar = () => {
         >
           <div className="flex items-center">
             <div className="w-28 h-10 ml-20">
-              <NavLink to={`/`}>
+              <NavLink to={`/Home`}>
                 <img
                   src="https://raw.githubusercontent.com/CapstoneProjectKelompok11/book-office-react/main/src/assets/logo.png"
                   alt=""
@@ -58,8 +55,14 @@ const Navbar = () => {
             <NavLink to={`/profile`}>
               <VscAccount size={18} className="mr-4" />
             </NavLink>
-            <BiLogOut size={18} className="mr-20"
-            onClick = {()=>{logout(); deleteCookies()}}  />
+            <BiLogOut
+              size={18}
+              className="mr-20"
+              onClick={() => {
+                logout();
+                deleteCookies();
+              }}
+            />
           </div>
         </div>
       </div>
