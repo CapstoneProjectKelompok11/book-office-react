@@ -29,6 +29,7 @@ const ListingPage = () => {
       );
     }
   });
+  //dataFilter didapat dari inpu handleChangeFilter
 
   const [searchInput, setSearchInput] = useState("");
   const inputHandler = (e) => {
@@ -74,7 +75,6 @@ const ListingPage = () => {
       .catch((err) => {
         console.log(err);
         console.log("Data gak ketemu");
-        // setError("Data gak ketemu")
       });
   }, []);
 
@@ -88,7 +88,6 @@ const ListingPage = () => {
       .catch((err) => {
         console.log(err);
         console.log("Data gak ketemu");
-        // setError("Data gak ketemu")
       });
   }, []);
 

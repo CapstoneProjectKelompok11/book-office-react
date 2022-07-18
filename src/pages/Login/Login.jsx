@@ -26,20 +26,8 @@ const Login = () => {
   const handleEmail = (e) => {
     const email = e.target.value;
     console.log("value", email);
-    // const valueNoSpace = email.includes(" ") ? false : true;
-    // const isThereaddress = email.split("@")[0] ? true : false;
-    // const justoneAt = email.match(/@/g)?.length === 1 ? true : false;
-    // const isThereDomain = email.split("@")[1]?.split(".")[0] ? true : false;
-    // const isThereTopLevelDomain =
-    //   email.split(".")[1]?.length > 0 ? true : false;
-
     setEmail(email);
     if (
-      // valueNoSpace &&
-      // isThereaddress &&
-      // justoneAt &&
-      // isThereDomain &&
-      // isThereTopLevelDomain
       email
     ) {
       setEmailValid(true);
@@ -51,17 +39,9 @@ const Login = () => {
 
   const handlePassword = (e) => {
     const password = e.target.value;
-    // const minLength = 8;
-    // const maxLength = 16;
-    // const containsNumber = password.match(/[0-9]/) ? true : false;
-    // const containsLetter = password.match(/[a-zA-Z]/) ? true : false;
     setPassword(password);
     if (
       password
-      // password.length >= minLength &&
-      // password.length <= maxLength &&
-      // containsLetter &&
-      // containsNumber
     ) {
       setPasswordValid(true);
       setDataForm((state) => ({ ...state, password }));
