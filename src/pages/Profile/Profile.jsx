@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 import PopUp from "../../components/PopUp";
 
 const MyProfile = () => {
@@ -261,6 +263,7 @@ const Profile = () => {
   const [tab, setTab] = useState("My Profile");
   return (
     <div>
+      <Navbar />
       <div className="max-w-[864px] conatiner mx-auto px-4">
         <div className="grid grid-cols-3 py-4 gap-3 mt-10">
           <button
@@ -298,6 +301,7 @@ const Profile = () => {
         {tab === "My Booking" ? <MyBooking /> : null}
         {tab === "My Favorite" ? <MyFavorite /> : null}
       </div>
+      <Footer />
     </div>
   );
 };

@@ -4,11 +4,12 @@ import axios from "axios";
 import { BiSearchAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AiOutlineStar } from "react-icons/ai";
-import Footer from "../../components/Footer";
 import "./Style.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const LandingPage = () => {
   const [data, setData] = useState([]);
@@ -58,6 +59,7 @@ const LandingPage = () => {
 
   return (
     <div>
+      <Navbar />
       {/* ----------------------Banner---------------- */}
       <div className="w-full h-[400px] relative">
         <img
@@ -328,7 +330,8 @@ const LandingPage = () => {
                             </div>
                           </>
                         ))
-                      : null} {/* Sama kek ternary sebelumnya */}
+                      : null}{" "}
+                    {/* Sama kek ternary sebelumnya */}
                   </>
                 );
               })}
@@ -378,6 +381,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

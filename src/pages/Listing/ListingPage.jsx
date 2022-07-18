@@ -7,6 +7,8 @@ import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
 import { AiOutlineWifi, AiFillBank } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const ListingPage = () => {
   const [data, setData] = useState([]);
@@ -103,6 +105,7 @@ const ListingPage = () => {
   console.log(data);
   return (
     <div>
+      <Navbar />
       {loading ? ( //Ternary apakah loading true?(didapat di use effect line 48) setState ny ada di line 61 Tampilin loading (Loading.jsx)
         <div>
           <Loading />
@@ -110,7 +113,7 @@ const ListingPage = () => {
       ) : (
         //Jika false, tampilin dibawah ini
         <>
-          <div className="max-w-[1300px] conatiner mx-auto px-4">
+          <div className="max-w-[1300px] conatiner mx-auto px-4 min-h-screen">
             <div className="p-5 text-center text-base font-normal">
               <p>Home {">"} ALL ROOM</p>
             </div>
@@ -277,6 +280,7 @@ const ListingPage = () => {
           {/* End of Card */}
         </>
       )}
+      <Footer />
     </div>
   );
 };
