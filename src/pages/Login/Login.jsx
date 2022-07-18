@@ -60,7 +60,7 @@ const Login = () => {
       setLoading(true);
 
       axiosInstance
-        .post("/login", {
+        .post("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/login", {
           email: dataForm.email,
           password: dataForm.password,
         })
