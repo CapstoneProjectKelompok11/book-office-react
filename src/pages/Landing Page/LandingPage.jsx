@@ -145,11 +145,11 @@ const LandingPage = () => {
             <div className="relative px-5">
               <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
-                  SCBD
+                  Palmerah
                 </p>
                 <img
                   className="object-fill brightness-[.7] rounded-lg"
-                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/81ee853c-a51c-4734-887e-a74615d4e0ca.jpg`}
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/a0b52f5e-0340-4398-9f94-c7244e3465c3.jpg`}
                   alt="img"
                 />
               </NavLink>
@@ -157,23 +157,11 @@ const LandingPage = () => {
             <div className="relative px-5">
               <NavLink to={`/listing`}>
                 <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
-                  Senayan City
+                  Cengkareng
                 </p>
                 <img
                   className="object-fill brightness-[.7] rounded-lg"
-                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d2e913e3-3dc3-427f-8080-c408e5f14537.jpg`}
-                  alt="img"
-                />
-              </NavLink>
-            </div>
-            <div className="relative px-5">
-              <NavLink to={`/listing`}>
-                <p className="z-10 absolute bottom-5 left-10 text-base font-medium text-white">
-                  Tanah Abang
-                </p>
-                <img
-                  className="object-fill brightness-[.7] rounded-lg"
-                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/0614c676-f92d-4707-a66e-b83a39e529ad.jpg`}
+                  src={`http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/aeb8dcba-f8fd-42bc-b198-1d9b09577155.jpg`}
                   alt="img"
                 />
               </NavLink>
