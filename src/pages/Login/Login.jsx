@@ -27,9 +27,7 @@ const Login = () => {
     const email = e.target.value;
     console.log("value", email);
     setEmail(email);
-    if (
-      email
-    ) {
+    if (email) {
       setEmailValid(true);
       setDataForm((state) => ({ ...state, email }));
     } else {
@@ -40,9 +38,7 @@ const Login = () => {
   const handlePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
-    if (
-      password
-    ) {
+    if (password) {
       setPasswordValid(true);
       setDataForm((state) => ({ ...state, password }));
     } else {
