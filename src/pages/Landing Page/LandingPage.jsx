@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../networks/api";
 import { BiSearchAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AiOutlineStar } from "react-icons/ai";
@@ -17,9 +17,9 @@ const LandingPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99" //Ngeget data dari sini
+        "/buildings?page=0&limit=99" //Ngeget data dari sini
       )
       .then((res) => {
         setData(res.data.data); //Disimpen disini hasil get nya

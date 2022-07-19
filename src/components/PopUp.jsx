@@ -6,13 +6,14 @@ import success from "../assets/book-success.png";
 import Profile from "../pages/Profile/Profile";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../networks/api"
 import Cookies from "js-cookie";
 import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
 export default function PopUp({ show, onClose ,items}) {
   console.log("items", items);
   console.log("show", show);
-  const API_URL = process.env.REACT_APP_BASE_URL;
+  // const API_URL = process.env.REACT_APP_BASE_URL;
   const [bookSuccess, setBookSuccess] = useState(false);
   const [tab, setTab] = useState("My Booking");
   
@@ -52,9 +53,9 @@ export default function PopUp({ show, onClose ,items}) {
     }
 
     //items props yang dikirim dari halaman sebelumnya
-    axios
+    axiosInstance
     .post(
-      API_URL+`auth/reservation?floorId=${items}`, SubmitData, {
+      `auth/reservation?floorId=${items}`, SubmitData, {
         headers : {
           'Authorization': `Bearer ${Cookies.get('token')}`
         }

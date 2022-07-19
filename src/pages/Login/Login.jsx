@@ -58,7 +58,6 @@ const Login = () => {
 
     if (isEmailValid && isPasswordValid) {
       setLoading(true);
-
       axiosInstance
         .post("/login", {
           email: dataForm.email,

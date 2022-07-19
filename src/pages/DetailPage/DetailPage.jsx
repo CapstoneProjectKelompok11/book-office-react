@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../../networks/api"
 import { HiLocationMarker } from "react-icons/hi";
 import { FaCity, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
@@ -28,25 +29,59 @@ const DetailPage = () => {
   const [isPopUpShow, setIsPopUpShow] = useState(false);
   const [datam, setDatam] = useState([]);
 
-  useEffect(() => {
-    const getOffice = async () => {
-      const response = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
-      );
-      const responseImg = await fetch(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg` //pakai statik buat
-      );
-      setData(await response.json()); //Buat dapetin data json biar
-      setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
-      setLoading(false); // setState handle loading
-    };
-    getOffice();
-  }, []);
+  // useEffect(() => {
+  //   const getOffice = async () => {
+  //     const response = await fetch(
+  //       `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building?id=${id}`
+  //     );
+  //     const responseImg = await fetch(
+  //       `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg` //pakai statik buat
+  //     );
+  //     setData(await response.json()); //Buat dapetin data json biar
+  //     setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
+  //     setLoading(false); // setState handle loading
+  //   };
+  //   getOffice();
+  // }, []);
+
+
+    useEffect(() => {
+      console.log("datape",data)
+    },[data])
+
 
   useEffect(() => {
-    axios
+    axiosInstance
       .get(
-        "http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings?page=0&limit=99" //Ngeget data dari sini
+        `/building?id=${id}`
+      )
+      .then((res) => {
+        setData(res.data); //Disimpen disini hasil get nya
+        console.log("data.data", res.data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log("err",err)
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get(
+  //       `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
+  //     )
+  //     .then((res) => {
+  //       setDataAll(res.data.data); //Disimpen disini hasil get nya
+  //     })
+  //     .catch((err) => {});
+  // }, []);
+  // console.log("dataAll", dataAll);
+
+
+  useEffect(() => {
+    axiosInstance
+      .get(
+        "/buildings?page=0&limit=99" //Ngeget data dari sini
       )
       .then((res) => {
         setDataAll(res.data.data); //Disimpen disini hasil get nya
@@ -58,9 +93,9 @@ const DetailPage = () => {
   const dataFloor = data?.data?.id;
   console.log("dataFloor", dataFloor);
   useEffect(() => {
-    axios
+    axiosInstance
       .get(
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/floor?buildingId=${id}`
+        `/floor?buildingId=${id}`
       )
       .then((res) => {
         setDatam(res);

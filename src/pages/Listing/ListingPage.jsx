@@ -7,6 +7,7 @@ import { RiProjector2Line, RiParkingBoxLine } from "react-icons/ri";
 import { AiOutlineWifi, AiFillBank } from "react-icons/ai";
 import { MdRestaurantMenu } from "react-icons/md";
 import axios from "axios";
+import axiosInstance from "../../networks/api"
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -49,25 +50,25 @@ const ListingPage = () => {
   useEffect(() => {
     const getOffice = async () => {
       //Coba get data pake axios
-      axios
-        .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/buildings")
+      axiosInstance
+        .get("/buildings")
         .then((res) => {
           setData(res.data.data);
         });
 
-      const responseImg = await fetch(
-        //Coba get data pake fetch
-        `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
-      );
-      setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
+      // const responseImg = await fetch(
+      //   //Coba get data pake fetch
+      //   `http://ec2-18-206-213-94.compute-1.amazonaws.com/api/building/image/d930bd6e-7bbf-4164-9e1b-3dedee31790c.jpg`
+      // );
+      // setImg(await responseImg.blob()); //Buat dapetin data gambar biar nanti kalau loading kelar, gambar bisa langsung tampil tanpa blank dulu
       setLoading(false); // setState handle loading
     };
     getOffice();
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/city")
+    axiosInstance
+      .get("/city")
       .then((res) => {
         setDatas(res.data.data);
         console.log(res.data.data);
@@ -79,8 +80,8 @@ const ListingPage = () => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://ec2-18-206-213-94.compute-1.amazonaws.com/api/complex")
+    axiosInstance
+      .get("/complex")
       .then((res) => {
         setDataComplex(res.data.data);
         console.log(res.data.data);
